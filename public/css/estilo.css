@@ -56,7 +56,7 @@ body {
   padding: 0;
 }
 
-.navbar li{
+.navbar li {
   white-space: nowrap;
 }
 
@@ -66,10 +66,10 @@ body {
   font-weight: 700;
   display: inline-block;
   transition: all 0.3s ease-in-out;
-  
+
 }
 
-.header a:hover{
+.header a:hover {
   transform: scale(1.1);
   font-weight: 700;
 }
@@ -184,7 +184,7 @@ body {
   margin-bottom: 4%;
 }
 
-.panificacao-foto{
+.panificacao-foto {
   width: 45%;
   display: flex;
   justify-content: flex-end;
@@ -219,8 +219,9 @@ body {
 
 .login {
   height: var(--tamanho-login);
-  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
-  background-size: cover;
+  background-color: #271f30;
+  /* background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
+  background-size: cover;*/
 }
 
 .login .container {
@@ -231,12 +232,12 @@ body {
 
 .card {
   width: 50%;
-  background-color: #e5e5e5;
+  background-color: #271f30;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  color: #534366;
+  color: #e8e7bc;
   flex-direction: column;
   height: fit-content;
   padding: 20px 0;
@@ -292,7 +293,7 @@ body {
   font-weight: 600;
   font-size: 18px;
   color: #e8e7bc;
-  background-color: #534366;
+  background-color: #271f30;
   width: 120px;
   height: 30px;
   align-self: center;
@@ -315,7 +316,7 @@ body {
 
 /* FORMULARIO */
 
-.alerta_erro{
+.alerta_erro {
   display: flex;
   justify-content: flex-end;
 }
@@ -332,7 +333,7 @@ body {
   margin-right: 10%;
 }
 
-.card_erro #mensagem_erro{
+.card_erro #mensagem_erro {
   font-weight: 500;
   font-size: 20px;
 }
@@ -384,10 +385,11 @@ input {
 
 .simulador {
   background-color: #e8e7bc;
-  padding: 5% 0;
+  padding: 0 5%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 5%;
 }
 
 .simulador-conteudo h2 {
@@ -404,6 +406,8 @@ input {
   margin-bottom: 10%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
+  transition: transform 0.3s ease;
+
 }
 
 .boxes {
@@ -413,13 +417,9 @@ input {
   gap: 3%;
   width: 90%;
   margin-top: 2%;
-  transition: transform 0.9s ease;
+  transition: transform 0.3s ease;
 }
 
-.boxes :hover{
-  transform: scale(1.05);
-  cursor: pointer;
-}
 
 .box {
   display: flex;
@@ -431,16 +431,22 @@ input {
   width: 25%;
   color: #e8e7bc;
   box-sizing: border-box;
+  transition: transform 0.3s ease;
+
+}
+
+.boxes :hover {
+  transform: scale(1.05);
+  cursor: pointer;
 }
 
 
-
-.box h4{
+.box h4 {
   font-size: 150%;
   margin: 2% 0;
 }
 
-.box p{
+.box p {
   font-size: 125%;
   margin: 2% 0;
 }
@@ -485,9 +491,23 @@ input {
 }
 
 @keyframes bell {
-  0%   {transform: rotate(25deg)}
-  25%  {transform: rotate(-25deg)}
-  50%  {transform: rotate(25deg)}
-  75%  {transform: rotate(-25deg)}
-  100% {transform: rotate(25deg)}
+  0% {
+    transform: rotate(25deg)
+  }
+
+  25% {
+    transform: rotate(-25deg)
+  }
+
+  50% {
+    transform: rotate(25deg)
+  }
+
+  75% {
+    transform: rotate(-25deg)
+  }
+
+  100% {
+    transform: rotate(25deg)
+  }
 }
