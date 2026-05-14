@@ -34,6 +34,13 @@ CREATE TABLE receita(
 	CONSTRAINT fkCategoriaReceita FOREIGN KEY (fkCategoria)
 	REFERENCES categoria(idCategoria)
   );
+  
+  CREATE TABLE ingrediente (
+  idIngrediente INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(45),
+  tipo VARCHAR(20),
+	CONSTRAINT chkTipo CHECK (tipo IN('Pó/Seco', 'Líquido', 'Pastoso/Derretido', 'In natura'))
+  );
 
 CREATE TABLE comentario(
   idComentario INT PRIMARY KEY AUTO_INCREMENT,
