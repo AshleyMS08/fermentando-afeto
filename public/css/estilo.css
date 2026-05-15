@@ -436,7 +436,17 @@ input {
   aspect-ratio: 1 / 1;
   object-fit: cover;
   transition: transform 0.3s ease;
+}
 
+.link-receita {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  text-align: center;
+}
+
+.link-receita:hover {
+  opacity: 0.85;
 }
 
 .boxes {
@@ -479,6 +489,9 @@ input {
   font-size: 125%;
   margin: 2% 0;
 }
+
+/* RECEITA */
+
 
 /* ALERTA */
 
