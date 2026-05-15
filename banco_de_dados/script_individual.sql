@@ -12,10 +12,10 @@ CREATE TABLE usuario(
 
 CREATE TABLE categoria(
   idCategoria INT PRIMARY KEY AUTO_INCREMENT,
-  categoria VARCHAR(45),
+  categoria VARCHAR(15),
 	CONSTRAINT chkCategoria CHECK (categoria IN('Doce', 'Salgado',
     'Integral', 'Sem glúten')),
-  tecnica VARCHAR(45),
+  tecnica VARCHAR(25),
 	CONSTRAINT chkTecnica CHECK (tecnica IN('Fermentação natural', 'Fermentação biológica',
     'Massa enriquecida'))
   );
@@ -23,9 +23,8 @@ CREATE TABLE categoria(
 CREATE TABLE receita(
   idReceita INT PRIMARY KEY AUTO_INCREMENT,
   nome VARCHAR(45),
-  ingredientes VARCHAR(1000),
   modoPreparo TEXT,
-  nivelReceita VARCHAR(20),
+  nivelReceita VARCHAR(15),
 	CONSTRAINT chkNivelReceita CHECK (nivelReceita IN('Básico', 'Intermediário', 'Avançado')),
   fkUsuario INT,
 	CONSTRAINT fkUsuarioReceita FOREIGN KEY (fkUsuario)
@@ -41,6 +40,21 @@ CREATE TABLE receita(
   tipo VARCHAR(20),
 	CONSTRAINT chkTipo CHECK (tipo IN('Pó/Seco', 'Líquido', 'Pastoso/Derretido', 'In natura'))
   );
+  
+  CREATE TABLE medida (
+  idMedida INT,
+  fkReceita INT,
+  fkIngrediente INT,
+  quantidade DECIMAL(10,2),
+  unidade_medida VARCHAR(15),
+	CONSTRAINT chkUnidade CHECK(unidade_medida IN('g', 'kg', 'ml',
+    'l', 'colher de sopa', 'colher de chá', 'xícara', 'unidade')),
+	PRIMARY KEY (idMedida, fkReceita, fkIngrediente),
+	CONSTRAINT fkReceitaMedida FOREIGN KEY (fkReceita)
+	REFERENCES receita(idReceita),
+	CONSTRAINT fkIngredienteMedida FOREIGN KEY (fkIngrediente)
+	REFERENCES ingrediente(idIngrediente)
+  );
 
 CREATE TABLE comentario(
   idComentario INT PRIMARY KEY AUTO_INCREMENT,
@@ -49,7 +63,7 @@ CREATE TABLE comentario(
 	CONSTRAINT fkReceitaComentario FOREIGN KEY (fkReceita)
     REFERENCES receita(idReceita),
   fkComentarioPai INT,
-    CONSTRAINT fkComentarioPai FOREIGN KEY (fkComentarioPai)
+    CONSTRAINT fkComentario FOREIGN KEY (fkComentario)
     REFERENCES comentario(idComentario)
   );
 
@@ -59,6 +73,8 @@ CREATE TABLE preferencia(
 	CONSTRAINT chkNivelPreferencia CHECK (nivelExperiencia IN ('iniciante', 
 	'intermediário', 'profissional')),
   objetivo VARCHAR(60),
+	CONSTRAINT chkObjetivo CHECK (objetivo IN ('Terapia e Lazer', 
+    'Presentear', 'Socializar', 'Consumo Familiar', 'Estilo de Vida')),
   fkUsuario INT,
 	CONSTRAINT fkUsuarioPreferencia FOREIGN KEY (fkUsuario)
     REFERENCES usuario(idUsuario)
