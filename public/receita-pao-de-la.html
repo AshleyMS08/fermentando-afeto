@@ -38,10 +38,24 @@
         </div>
     </div>
 
+    <div class="container-voltar">
+        <li>
+            <a href="./simulador.html" class="btn-voltar">←</a>
+        </li>
+    </div>
+    
+
     <!--receita inicio-->
     <div class="receita-container">
-        <h2>Pão de lã (Wool Roll Bread)</h2>
-            <p> <span>Rendimento: 1 pão (forma de 20 cm)</span>| <span> Tempo de espera: ~3h30 | Forno: 180°C</span></p>
+        <div class="receita-header">
+            <h2>Pão de lã (Wool Roll Bread)</h2>
+                <p class="receita-dados"> 
+                <span>Rendimento: 1 pão (forma de 20 cm)</span> |
+                <span> Tempo de espera: 3h30</span> |
+                <span>Forno: 180°C</span>
+                </p>
+        </div>
+        
         <img src="assets/pao-de-la.png" class="img-receita">
 
         <h3>Ingredientes</h3>
@@ -77,5 +91,45 @@
         <li>Deixe arrefecer ligeiramente antes de desenformar para não murchar.</li></ol>
     </div>
     <!--receita fim-->
+
+    <!--sessão de comentários início-->
+    <hr class="divisor-receita">
+    <div class="sessao-comentarios">
+        <h3>Deixei seu afeto ou dúvida</h3>
+
+        <div class="comentario-form">
+            <div class="input-grupo">
+                <label for="textarea_comentario">Seu comentário:</label>
+                <textarea id="textarea_comentario" rows="3" placeholder="O que você achou da receita?"></textarea>
+            </div>
+            <button class="btn-enviar" onclick="postarComentario()">Enviar comentário</button>
+        </div>
+
+        <h3>Comentários da Comunidade</h3>
+        <div class="comentarios-lista" id="div_lista_comentario">
+            <div class="comentario-grupo">
+                <div class="comentario-card">
+                    <div class="comentario-header">
+                        <strong class="comentario-autor">Nicoly</strong>
+                        <span class="comentario-data">15/02/2026</span>
+                    </div>
+                    <p class="comentario-texto">Fiz o pão aqui em casa e ficou maravilhoso, muito fofinho</p>
+                    <button class="btn-responder" onclick="abrirResposta(this)">Responder</button>
+                </div>
+
+                <div class="comentario-respostas">
+                    <div class="comentario-card respostas">
+                        <div class="comentario-header">
+                            <strong class="comentario-autor">Ingrid</strong>
+                            <span class="comentario-data">11/05/2026</span>
+                        </div>
+                        <p class="comentario-texto">Sim, melhor receita de pão de lã que eu já fiz</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--sessão de comentários fim-->
 </body>
 </html>
