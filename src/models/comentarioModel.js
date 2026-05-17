@@ -31,10 +31,10 @@ function listar(idReceita) {
     ORDER BY c.idComentario DESC;
     `;
 
-    console.log("Executanto a instrução SQL: \n" + instrucaoSql)
+    console.log("Executanto a instrução SQL: \n" + instrucaoSql);
 }
 
 module.exports = {
     cadastrar,
     listar
-}
+};

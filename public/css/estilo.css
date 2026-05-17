@@ -343,6 +343,16 @@ body {
   display: none
 }
 
+.card-cadastro select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #d0bde8;
+  background-color: #8e8199;
+  font-family: inherit;
+  color: #271f30;
+}
+
 /* FORMULARIO */
 
 .alerta_erro {
