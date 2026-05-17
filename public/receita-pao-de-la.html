@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
-<body>
+<body onload="atualizarMural()">
 
     <!--header inicio-->
     <div class="header">
@@ -110,25 +110,25 @@
             <div class="comentario-grupo">
                 <div class="comentario-card">
                     <div class="comentario-header">
-                        <strong class="comentario-autor">Nicoly</strong>
-                        <span class="comentario-data">15/02/2026</span>
+                        <strong class="comentario-autor"></strong>
+                        <span class="comentario-data"></span>
                     </div>
-                    <p class="comentario-texto">Fiz o pão aqui em casa e ficou maravilhoso, muito fofinho</p>
-                    <button class="btn-responder" onclick="abrirResposta(div_resposta)">Responder</button>
+                    <p class="comentario-texto"></p>
+                    <button class="btn-responder" onclick="abrirResposta(1)">Responder</button>
                 </div>
 
-                <div class="div-resposta-input" id="div_resposta" style="display: none;">
-                    <textarea rows="2" id="textarea_resposta" placeholder="Escreva uma resposta"></textarea>
-                    <button class="btn-enviar" onclick="enviarResposta('div_resposta', 'textarea_resposta')">Enviar resposta</button>
+                <div class="div-resposta-input" id="div_resposta_1" style="display: none;">
+                    <textarea rows="2" id="textarea_resposta_1" placeholder="Escreva uma resposta"></textarea>
+                    <button class="btn-enviar" onclick="enviarResposta(1)">Enviar resposta</button>
                 </div>
 
                 <div class="comentario-respostas">
                     <div class="comentario-card respostas">
                         <div class="comentario-header">
-                            <strong class="comentario-autor">Ingrid</strong>
-                            <span class="comentario-data">11/05/2026</span>
+                            <strong class="comentario-autor"></strong>
+                            <span class="comentario-data"></span>
                         </div>
-                        <p class="comentario-texto">Sim, melhor receita de pão de lã que eu já fiz</p>
+                        <p class="comentario-texto"></p>
                     </div>
                 </div>
 
@@ -159,31 +159,46 @@
 <script>
     function postarComentario() {
         var idUsuarioLogado = sessionStorage.idUsuario;
+        var textoComentario = document.getElementById('textarea_comentario').value;
+
+        var idReceitaAtual = 1;
 
         if (idUsuarioLogado == undefined || idUsuarioLogado == ''){
-            var modal = document.getElementById('div_modal_cadastro');
-            modal.style.display = 'flex';
+            document.getElementById('div_modal_cadastro').style.display = 'flex';
             return
         }
 
-        var textoDoComentario = textarea_comentario.value;
-
-        if(textoDoComentario == '') {
+        if(textoComentario == '') {
             alert('Por favor, digite um comentário antes de enviar.');
             return;
         }
 
-        alert('Seu comentário foi capturado' + textoDoComentario);
+        fetch("/comentarios/cadastrar", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                comentarioServer: textoComentario,
+                fkReceitaServer: idReceitaAtual,
+                fkUsuarioServer: idUsuarioLogado,
+                fkComentarioServer: null
+            })
+        }).then(function (resposta) {
+            if(respposta.ok) {
+                alert ('Comentário publicado com sucesso!');
+                window.location.reload();
+            } else {
+                alert('Erro ao publicar comentário!');
+            }
+        }).catch(function (erro) {
+            console.log('Erro na requisição: ', erro);
+        });
 
-        textarea_comentario.value = '';
-    }
 
-    function fecharModal() {
-        var modal = document.getElementById('div_modal_cadastro');
-        modal.style.display = 'none';
-    }
+    function abrirResposta(idComentario){
+        var caixa = document.getElementById('div_resposta_' + idComentario)
 
-    function abrirResposta(){
        if(div_resposta.style.display == 'none' || div_resposta.style.display == '') {
         div_resposta.style.display = 'block';
        } else {
@@ -191,17 +206,89 @@
        }
     }
 
-    function enviarResposta () {
-        var textoDaResposta = textarea_resposta.value;
+    function enviarResposta (idComentarioPai) {
+        var idUsuarioLogado = sessionStorage.idUsuario;
+        var campoTexto = document.getElementById("textarea_resposta_" + idComentarioPai);
+        var textoDaResposta = campoTexto.value;
+        var idReceitaAtual = 1;
+
+        if (idUsuarioLogado == "" || idUsuarioLogado == undefined) {
+            document.getElementById('div_modal_cadastro').style.display = 'flex';
+            return;
+        }
 
         if(textoDaResposta == ''){
             alert('Por favor, digite uma resposta antes de enviar!');
             return;
         }
 
-        alert('Sua resposta foi capturada:' + textoDaResposta);
-
-        textarea_resposta.value = '';
-        div_resposta.style.display = '';
+        fetch("/comentarios/cadastrar", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                comentarioServer: textoDaResposta,
+                fkReceitaServer: idReceitaAtual,
+                fkUsuarioServer: idUsuarioLogado,
+                fkComentarioServer: idComentarioPai
+            })
+        }).then(function (resposta) {
+            if(respposta.ok) {
+                alert ('Resposta enviada com sucesso!');
+                window.location.reload();
+            } else {
+                alert('Erro ao enviar respostas!');
+            }
+        }).catch(function (erro) {
+            console.log('Erro na requisição: ', erro);
+        });
     }
+
+    function atualizarMural() {
+        var idReceitaAtual = 1;
+
+        fetch(`/comentarios/listar/${idReceitaAtual}`, {
+            cache: 'no-store'
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (comentariosDoBanco) {
+                    console.log('Dados recebidos: ', JSON.stringify(comentariosDoBanco));
+
+                    var mural = document.getElementById('div_lista_comentarios');
+
+                    if (comentariosDoBanco.length == 0) {
+                        mural.innerHTML = "<p class='sem-comentarios'> Seja o primeiro a ddeixar seu afeto nesta receita!</p>"
+                    }
+
+                    for (var i = 0; i < comentariosDoBanco.length; i++) {
+                        var comentarioAtual = comentariosDoBanco[i];
+
+                        mural.innerHTML += `
+                            <div class="comentario-card">
+                                <div class="comentario-header">
+                                    <strong class="comentario-autor">${comentarioAtual.nome}</strong>
+                                    <span class="comentario-data">${comentarioAtual.dtComentario}</span>
+                                </div>
+                                <p class="comentario-texto">${comentarioAtual.comentario}</p>
+                                <button class="btn-responder" onclick="abrirResposta(${comentarioAtual.idComentario})">Responder</button>
+                            </div>
+
+                            <div class="div-resposta-input" id="div_resposta_${comentarioAtual.idComentario}" style="display: none;">
+                                <textarea rows="2" id="textarea_resposta_${comentarioAtual.idComentario}" placeholder="Escreva uma resposta"></textarea>
+                                <button class="btn-enviar" onclick="enviarResposta(${comentarioAtual.idComentario})">Enviar resposta</button>
+                            </div>
+                        </div>
+                        `;
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        }).catch(function (erro) {
+            console.error("Erro na obtenção dos dados: ", erro.message);
+        });
+    }
+
+}
 </script>

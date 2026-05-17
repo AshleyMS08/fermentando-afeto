@@ -25,6 +25,28 @@ function cadastrar(req, res) {
     }
 }
 
+function listar(req, res) {
+    var idReceita = req.params.idReceita;
+
+    if(idReceita == undefined) {
+        res.status(400).send("O ID da receita está undefined!");
+    } else {
+        comentarioModel.listar(idReceita)
+            .then(function (resultado) {
+                if (resultado.length > 0) {
+                    res.status(200).json(resultado);
+                } else {
+                    res.status(204).json([]);
+                }
+            })
+            .catch(function (erro) {
+                    console.log(erro);
+                    res.status(500).json(erro.sqlMessage);
+            });
+    }
+}
+
 module.exports = {
-    cadastrar
+    cadastrar,
+    listar
 }

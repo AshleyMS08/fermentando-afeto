@@ -16,6 +16,25 @@ function cadastrar(comentario, fkReceita, fkUsuario, fkComentario) {
 
 }
 
+function listar(idReceita) {
+    console.log("ACESSEI O COMENTÁRIO MODEL para executar o SELECT. ID Receita: ", idReceita);
+
+    var instrucaoSql = `
+    SELECT 
+        c.idComentario,
+        c.comentario,
+        DATE_FORMAT(c.dtComentario, '%d/%m/%Y') AS dtComentario,
+        u.nome
+    FROM comentario AS c
+    JOIN usuario AS u ON c.fkusuario = u.idUsuario
+    WHERE c.fkReceita = ${idReceita}
+    ORDER BY c.idComentario DESC;
+    `;
+
+    console.log("Executanto a instrução SQL: \n" + instrucaoSql)
+}
+
 module.exports = {
-    cadastrar
-};
+    cadastrar,
+    listar
+}
