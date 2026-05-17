@@ -114,7 +114,12 @@
                         <span class="comentario-data">15/02/2026</span>
                     </div>
                     <p class="comentario-texto">Fiz o pão aqui em casa e ficou maravilhoso, muito fofinho</p>
-                    <button class="btn-responder" onclick="abrirResposta(this)">Responder</button>
+                    <button class="btn-responder" onclick="abrirResposta(div_resposta)">Responder</button>
+                </div>
+
+                <div class="div-resposta-input" id="div_resposta" style="display: none;">
+                    <textarea rows="2" id="textarea_resposta" placeholder="Escreva uma resposta"></textarea>
+                    <button class="btn-enviar" onclick="enviarResposta('div_resposta', 'textarea_resposta')">Enviar resposta</button>
                 </div>
 
                 <div class="comentario-respostas">
@@ -131,5 +136,72 @@
         </div>
     </div>
     <!--sessão de comentários fim-->
+
+    <!-- pop-up alerta de login início -->
+    <div id="div_modal_cadastro" class="modal-container" style="display: none;">
+        <div class="modal-conteudo">
+            <h2>Ops! Você não está logado</h2>
+            <p>Para interagir com a comunidade e deixar seu afeto na receita, você precisa ter uma conta.</p>
+
+            <div class="modal-botoes">
+                <button class="btn-enviar" onclick="window.location='./cadastro.html'">Criar uma conta</button>
+                <button class="btn-link-login" onclick="window.location='./login.html'">Já tenho uma conta</button>
+            </div>
+
+            <button class="btn-fechar-modal" onclick="fecharModal()">Voltar para receita</button>
+        </div>
+    </div>
+    <!-- pop-up alerta de login fim -->
+
 </body>
 </html>
+
+<script>
+    function postarComentario() {
+        var idUsuarioLogado = sessionStorage.idUsuario;
+
+        if (idUsuarioLogado == undefined || idUsuarioLogado == ''){
+            var modal = document.getElementById('div_modal_cadastro');
+            modal.style.display = 'flex';
+            return
+        }
+
+        var textoDoComentario = textarea_comentario.value;
+
+        if(textoDoComentario == '') {
+            alert('Por favor, digite um comentário antes de enviar.');
+            return;
+        }
+
+        alert('Seu comentário foi capturado' + textoDoComentario);
+
+        textarea_comentario.value = '';
+    }
+
+    function fecharModal() {
+        var modal = document.getElementById('div_modal_cadastro');
+        modal.style.display = 'none';
+    }
+
+    function abrirResposta(){
+       if(div_resposta.style.display == 'none' || div_resposta.style.display == '') {
+        div_resposta.style.display = 'block';
+       } else {
+        div_resposta.style.display = 'none';
+       }
+    }
+
+    function enviarResposta () {
+        var textoDaResposta = textarea_resposta.value;
+
+        if(textoDaResposta == ''){
+            alert('Por favor, digite uma resposta antes de enviar!');
+            return;
+        }
+
+        alert('Sua resposta foi capturada:' + textoDaResposta);
+
+        textarea_resposta.value = '';
+        div_resposta.style.display = '';
+    }
+</script>
