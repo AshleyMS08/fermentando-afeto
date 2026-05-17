@@ -122,19 +122,23 @@
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
+    var experienciaVar = select_experiencia.value;
+    var objetivoVar = select_objetivo.value;
 
     // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
-      confirmacaoSenhaVar == ""
+      confirmacaoSenhaVar == "" ||
+      experienciaVar == "" ||
+      objetivoVar == ""
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+        "Por favor, preencha todos os campos do formulário!";
 
-      finalizarAguardar();
+      //finalizarAguardar();
       return false;
     } else {
       setInterval(sumirMensagem, 5000);
@@ -153,7 +157,9 @@
         // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
         emailServer: emailVar,
-        senhaServer: senhaVar
+        senhaServer: senhaVar,
+        experienciaServer: experienciaVar,
+        objetivoServer: objetivoVar 
       }),
     })
       .then(function (resposta) {
@@ -161,7 +167,6 @@
 
         if (resposta.ok) {
           cardErro.style.display = "block";
-
           mensagem_erro.innerHTML =
             "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
@@ -169,15 +174,15 @@
             window.location = "login.html";
           }, "2000");
 
-          limparFormulario();
-          finalizarAguardar();
+          //limparFormulario();
+          //finalizarAguardar();
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
+        //finalizarAguardar();
       });
 
     return false;
