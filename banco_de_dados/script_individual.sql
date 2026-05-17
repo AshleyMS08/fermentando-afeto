@@ -62,6 +62,9 @@ CREATE TABLE comentario(
   fkReceita INT,
 	CONSTRAINT fkReceitaComentario FOREIGN KEY (fkReceita)
     REFERENCES receita(idReceita),
+  fkUsuario INT,
+	CONSTRAINT fkUsuarioComentario FOREIGN KEY (fkUsuario)
+	REFERENCES usuario(idUsuario),  
   fkComentario INT,
     CONSTRAINT fkComentario FOREIGN KEY (fkComentario)
     REFERENCES comentario(idComentario)
