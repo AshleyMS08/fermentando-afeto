@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Receitas | Pizza </title>
+    <script src="./js/sessao.js"></script>
+
+    <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="icon" href="./assets/icon/favicon2.ico">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+</head>
+
+<body onload="atualizarMural()">
+
+    <!--header inicio-->
+    <div class="header">
+        <div class="container">
+            <h1 class="titulo">Fermentando Afeto</h1>
+            <ul class="navbar">
+                <li>
+                    <a href="./index.html">Home</a>
+                </li>
+                <li>
+                    <a href="./simulador.html">Receitas</a>
+                </li>
+                <li>|</li>
+                <li>
+                    <a href="./login.html">Login</a>
+                </li>
+                <li>
+                    <a href="./cadastro.html">Cadastro</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-voltar">
+        <li>
+            <a href="./simulador.html" class="btn-voltar">←</a>
+        </li>
+    </div>
+    
+
+    <!--receita inicio-->
+    <div class="receita-container">
+        <div class="receita-header">
+            <h2>Massa de Pizza</h2>
+                <p class="receita-dados"> 
+                <span>Rendimento: 1 pão (forma de 20 cm)</span> |
+                <span> Tempo de espera: 3h30</span> |
+                <span>Forno: 180°C</span>
+                </p>
+        </div>
+        
+        <img src="assets/pizza.png" class="img-receita">
+
+        <h3>Ingredientes</h3>
+        <ul class="lista-ingredientes">
+        <li>740 gramas de farinha de trigo</li>
+        <li>20 gramas de fermento biológico seco</li>
+        <li>2 colheres de chá de açúcar</li>
+        <li>2 colheres de chá de sal</li>
+        <li>2 1/2 de chá de água morna</li>
+        <li>1/4 de xícara de chá de azeite</li></ul>
+        
+
+        <h3>Modo de Preparo</h3>
+        <ol class="modo-preparo">
+        <li>Numa tigela, misture o fermento e o açúcar. Regue com a água morna e, com uma colher, 
+	misture bem para dissolver. Deixe em temperatura ambiente até espumar cerca de 5 minutos.</li>
+
+        <li>Enquanto isso, na tigela da batedeira, misture a farinha com o sal e abra um buraco no centro. 
+	Separe uma tigela ou outro recipiente grande e unte com 2 colheres de sopa de azeite ela tem que 
+	ter espaço suficiente para a massa crescer bastante.</li>
+
+        <li>Assim que espumar, despeje a mistura de fermento no centro da tigela com farinha. Adicione um 
+	quarto de xícara de chá de azeite e misture, com uma espátula, apenas para incorporar.</li>
+
+        <li>Para sovar a massa, encaixe a tigela na batedeira com o gancho. Comece a bater em velocidade 
+	baixa por 5 minutos, aumente a velocidade aos poucos para alta e deixe bater por mais 15 minutos 
+	até formar uma massa lisa. Ela vai descolar da lateral da tigela e formar uma bola no gancho da batedeira.</li>
+
+        <li>Com as pontas dos dedos ou uma espátula, desgrude a massa da tigela da batedeira e transfira para o 
+	recipiente untado com azeite. Cubra com filme e deixe descansar por 1 hora, até crescer e dobrar de volume.</li>
+
+        <li>Quando faltarem 30 minutos para completar o tempo de crescimento da massa, preaqueça o forno a 250 graus. 
+	Se for utilizar uma assadeira de pedra sabão, coloque-a dentro do forno ainda frio para aquecer desde o início. 
+	Caso contrário, ela pode rachar com o choque térmico.</li>
+
+        <li>Polvilhe uma bancada lisa com farinha de trigo, transfira a massa de pizza para a bancada e, com uma espátula 
+	ou faca, divida em 4 porções.</li>
+
+	<li>Utilize a seguir ou, se preferir, embale individualmente com filme e armazene na geladeira por 3 dias ou no 
+	congelador por até 1 mês.</li></ol>
+
+    </div>
+    <!--receita fim-->
+
+    <!--sessão de comentários início-->
+    <hr class="divisor-receita">
+    <div class="sessao-comentarios">
+        <h3>Deixei seu afeto ou dúvida</h3>
+
+        <div class="comentario-form">
+            <div class="input-grupo">
+                <label for="textarea_comentario">Seu comentário:</label>
+                <textarea id="textarea_comentario" rows="3" placeholder="O que você achou da receita?"></textarea>
+            </div>
+            <button class="btn-enviar" onclick="postarComentario()">Enviar comentário</button>
+        </div>
+
+        <h3>Comentários da Comunidade</h3>
+        <div class="comentarios-lista" id="div_lista_comentario">
+            <div class="comentario-grupo">
+                <div class="comentario-card">
+                    <div class="comentario-header">
+                        <strong class="comentario-autor"></strong>
+                        <span class="comentario-data"></span>
+                    </div>
+                    <p class="comentario-texto"></p>
+                    <button class="btn-responder" onclick="abrirResposta(1)">Responder</button>
+                </div>
+
+                <div class="div-resposta-input" id="div_resposta_1" style="display: none;">
+                    <textarea rows="2" id="textarea_resposta_1" placeholder="Escreva uma resposta"></textarea>
+                    <button class="btn-enviar" onclick="enviarResposta(1)">Enviar resposta</button>
+                </div>
+
+                <div class="comentario-respostas">
+                    <div class="comentario-card respostas">
+                        <div class="comentario-header">
+                            <strong class="comentario-autor"></strong>
+                            <span class="comentario-data"></span>
+                        </div>
+                        <p class="comentario-texto"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--sessão de comentários fim-->
+
+    <!-- pop-up alerta de login início -->
+    <div id="div_modal_cadastro" class="modal-container" style="display: none;">
+        <div class="modal-conteudo">
+            <h2>Ops! Você não está logado</h2>
+            <p>Para interagir com a comunidade e deixar seu afeto na receita, você precisa ter uma conta.</p>
+
+            <div class="modal-botoes">
+                <button class="btn-enviar" onclick="window.location='./cadastro.html'">Criar uma conta</button>
+                <button class="btn-link-login" onclick="window.location='./login.html'">Já tenho uma conta</button>
+            </div>
+
+            <button class="btn-fechar-modal" onclick="fecharModal()">Voltar para receita</button>
+        </div>
+    </div>
+    <!-- pop-up alerta de login fim -->
+
+</body>
+</html>
+
+<script>
+    function postarComentario() {
+        var idUsuarioLogado = sessionStorage.idUsuario;
+        var textoComentario = document.getElementById('textarea_comentario').value;
+
+        var idReceitaAtual = 1;
+
+        if (idUsuarioLogado == undefined || idUsuarioLogado == ''){
+            document.getElementById('div_modal_cadastro').style.display = 'flex';
+            return
+        }
+
+        if(textoComentario == '') {
+            alert('Por favor, digite um comentário antes de enviar.');
+            return;
+        }
+
+        fetch("/comentarios/cadastrar", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                comentarioServer: textoComentario,
+                fkReceitaServer: idReceitaAtual,
+                fkUsuarioServer: idUsuarioLogado,
+                fkComentarioServer: null
+            })
+        }).then(function (resposta) {
+            if(respposta.ok) {
+                alert ('Comentário publicado com sucesso!');
+                window.location.reload();
+            } else {
+                alert('Erro ao publicar comentário!');
+            }
+        }).catch(function (erro) {
+            console.log('Erro na requisição: ', erro);
+        });
+
+
+    function abrirResposta(idComentario){
+        var caixa = document.getElementById('div_resposta_' + idComentario)
+
+       if(div_resposta.style.display == 'none' || div_resposta.style.display == '') {
+        div_resposta.style.display = 'block';
+       } else {
+        div_resposta.style.display = 'none';
+       }
+    }
+
+    function enviarResposta (idComentarioPai) {
+        var idUsuarioLogado = sessionStorage.idUsuario;
+        var campoTexto = document.getElementById("textarea_resposta_" + idComentarioPai);
+        var textoDaResposta = campoTexto.value;
+        var idReceitaAtual = 1;
+
+        if (idUsuarioLogado == "" || idUsuarioLogado == undefined) {
+            document.getElementById('div_modal_cadastro').style.display = 'flex';
+            return;
+        }
+
+        if(textoDaResposta == ''){
+            alert('Por favor, digite uma resposta antes de enviar!');
+            return;
+        }
+
+        fetch("/comentarios/cadastrar", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                comentarioServer: textoDaResposta,
+                fkReceitaServer: idReceitaAtual,
+                fkUsuarioServer: idUsuarioLogado,
+                fkComentarioServer: idComentarioPai
+            })
+        }).then(function (resposta) {
+            if(respposta.ok) {
+                alert ('Resposta enviada com sucesso!');
+                window.location.reload();
+            } else {
+                alert('Erro ao enviar respostas!');
+            }
+        }).catch(function (erro) {
+            console.log('Erro na requisição: ', erro);
+        });
+    }
+
+    function atualizarMural() {
+        var idReceitaAtual = 1;
+
+        fetch(`/comentarios/listar/${idReceitaAtual}`, {
+            cache: 'no-store'
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (comentariosDoBanco) {
+                    console.log('Dados recebidos: ', JSON.stringify(comentariosDoBanco));
+
+                    var mural = document.getElementById('div_lista_comentarios');
+
+                    if (comentariosDoBanco.length == 0) {
+                        mural.innerHTML = "<p class='sem-comentarios'> Seja o primeiro a ddeixar seu afeto nesta receita!</p>"
+                    }
+
+                    for (var i = 0; i < comentariosDoBanco.length; i++) {
+                        var comentarioAtual = comentariosDoBanco[i];
+
+                        mural.innerHTML += `
+                            <div class="comentario-card">
+                                <div class="comentario-header">
+                                    <strong class="comentario-autor">${comentarioAtual.nome}</strong>
+                                    <span class="comentario-data">${comentarioAtual.dtComentario}</span>
+                                </div>
+                                <p class="comentario-texto">${comentarioAtual.comentario}</p>
+                                <button class="btn-responder" onclick="abrirResposta(${comentarioAtual.idComentario})">Responder</button>
+                            </div>
+
+                            <div class="div-resposta-input" id="div_resposta_${comentarioAtual.idComentario}" style="display: none;">
+                                <textarea rows="2" id="textarea_resposta_${comentarioAtual.idComentario}" placeholder="Escreva uma resposta"></textarea>
+                                <button class="btn-enviar" onclick="enviarResposta(${comentarioAtual.idComentario})">Enviar resposta</button>
+                            </div>
+                        </div>
+                        `;
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        }).catch(function (erro) {
+            console.error("Erro na obtenção dos dados: ", erro.message);
+        });
+    }
+
+}
+</script>

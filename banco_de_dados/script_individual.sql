@@ -26,19 +26,30 @@ CREATE TABLE receita(
   modoPreparo TEXT,
   nivelReceita VARCHAR(15),
 	CONSTRAINT chkNivelReceita CHECK (nivelReceita IN('Básico', 'Intermediário', 'Avançado')),
-  fkUsuario INT,
-	CONSTRAINT fkUsuarioReceita FOREIGN KEY (fkUsuario)
-	REFERENCES usuario(idUsuario),
   fkCategoria INT,
 	CONSTRAINT fkCategoriaReceita FOREIGN KEY (fkCategoria)
 	REFERENCES categoria(idCategoria)
   );
   
+  CREATE TABLE receitas_favoritas (
+	fkUsuario INT,
+		CONSTRAINT fkUsuarioReceita FOREIGN KEY (fkUsuario)
+		REFERENCES usuario(idUsuario),
+	fkReceita INT,
+		CONSTRAINT fkReceitaFavorita FOREIGN KEY (fkReceita)
+		REFERENCES receita(idReceita),
+	PRIMARY KEY(fkUsuario, fkReceita),
+    dtSalvamento TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+  );
+  
   CREATE TABLE ingrediente (
   idIngrediente INT PRIMARY KEY AUTO_INCREMENT,
-  nome VARCHAR(45),
-  tipo VARCHAR(20),
-	CONSTRAINT chkTipo CHECK (tipo IN('Pó/Seco', 'Líquido', 'Pastoso/Derretido', 'In natura'))
+  nome VARCHAR(45)
+  );
+  
+  CREATE TABLE tipo (
+  idTipo INT PRIMARY KEY AUTO_INCREMENT,
+  estado VARCHAR(20)
   );
   
   CREATE TABLE medida (
@@ -47,8 +58,8 @@ CREATE TABLE receita(
   fkIngrediente INT,
   quantidade DECIMAL(10,2),
   unidade_medida VARCHAR(15),
-	CONSTRAINT chkUnidade CHECK(unidade_medida IN('g', 'kg', 'ml',
-    'l', 'colher de sopa', 'colher de chá', 'xícara', 'unidade')),
+	CONSTRAINT chkUnidade CHECK(unidade_medida IN('gramas', 'kilogramas', 'mililitros',
+    'litros', 'colher de sopa', 'colher de chá', 'xícara', 'unidade')),
 	PRIMARY KEY (idMedida, fkReceita, fkIngrediente),
 	CONSTRAINT fkReceitaMedida FOREIGN KEY (fkReceita)
 	REFERENCES receita(idReceita),
@@ -83,3 +94,9 @@ CREATE TABLE preferencia(
     REFERENCES usuario(idUsuario)
   );
 
+INSERT INTO tipo (estado)
+VALUES
+(Pó/Seco),
+(Líquido),
+(Pastoso/Derretido),
+(In_natura);
