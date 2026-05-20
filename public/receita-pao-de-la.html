@@ -161,7 +161,7 @@
         var idUsuarioLogado = sessionStorage.idUsuario;
         var textoComentario = document.getElementById('textarea_comentario').value;
 
-        var idReceitaAtual = 1;
+        var idReceitaAtual = 4;
 
         if (idUsuarioLogado == undefined || idUsuarioLogado == ''){
             document.getElementById('div_modal_cadastro').style.display = 'flex';
@@ -210,7 +210,7 @@
         var idUsuarioLogado = sessionStorage.idUsuario;
         var campoTexto = document.getElementById("textarea_resposta_" + idComentarioPai);
         var textoDaResposta = campoTexto.value;
-        var idReceitaAtual = 1;
+        var idReceitaAtual = 4;
 
         if (idUsuarioLogado == "" || idUsuarioLogado == undefined) {
             document.getElementById('div_modal_cadastro').style.display = 'flex';
@@ -246,7 +246,7 @@
     }
 
     function atualizarMural() {
-        var idReceitaAtual = 1;
+        var idReceitaAtual = 4;
 
         fetch(`/comentarios/listar/${idReceitaAtual}`, {
             cache: 'no-store'

@@ -3,7 +3,6 @@
 @font-face {
   font-family: 'fonte-2';
   src: url(/assets/fonts/fonte-3.otf) format('opentype');
-  /*src: url(../assets/fonts/fonte-2.ttf) /*format('opentype');*/
   font-weight: normal;
   font-style: normal;
 }

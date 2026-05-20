@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receitas | Pão de Lã</title>
+
+    <link rel="stylesheet" href="./../css/dashboards.css">
+    <link rel="stylesheet" href="./../css/estilo.css" />
+    <script src="../js/sessao.js"></script>
+    <script src="./../js/alerta.js"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body onload="validarSessao(), atualizarMural()">
+
+    <div class="janela">
+
+
+        <div class="header-left">
+
+            <h1>Fermentando Afeto</h1>
+
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="cards.html">
+                    <h3>Receitas favoritas</h3>
+                </a>
+            </div>
+            <div class="btn-nav-white">
+                <a href="./dashboard.html">
+                    <h3>Dashboard</h3>
+                </a>
+            </div>
+            <div class="btn-nav">
+                <a href="./mural.html">
+                    <h3>Catálogo de receitas</h3>
+                </a>
+            </div>
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
+        </div>
+        
+        <div class="dash area-catalogo">
+            <div class="container-voltar">
+                <a href="./mural.html" class="btn-voltar">←</a>
+            </div>
+            <div class="receita-container">
+                <div class="receita-header">
+                    <h2>Pão de Lã(Woll Roll Bread)</h2>
+                    <p class="receita-dados">
+                        <span>Rendimento: 1 pão (forma de 20 cm)</span> |
+                        <span> Tempo de espera: 3h30</span> |
+                        <span>Forno: 180°C</span>
+                    </p>
+                </div>
+
+                <img src="assets/pao-de-la.png" class="img-receita">
+
+                <h3>Ingredientes</h3>
+                <ul class="lista-ingredientes">
+                    <li>300 g Farinha de trigo (sem fermento)</li>
+                    <li>80 ml Leite morno (mais um pouco para pincelar)</li>
+                    <li>100 ml Natas (Creme de leite)</li>
+                    <li>1 unidade Ovo</li>
+                    <li>30 g Açúcar</li>
+                    <li>6 g Fermento biológico seco</li>
+                    <li>5 g Sal</li></ul>
+                    
+
+                    <h3>Modo de Preparo</h3>
+                    <ol class="modo-preparo">
+                    <li>Na taça da batedeira, coloque todos os ingredientes da massa.</li>
+                    <li>Com o gancho de amassar, trabalhe a massa por 10 minutos. O ponto ideal é uma massa lisa, 
+                    elástica e que se solte totalmente das paredes da taça.</li>
+                    <li>Tape a taça (pano ou película) e deixe levedar num local ameno por 2 horas ou até doolar 
+                    de volume.</li>
+                    <li>Coloque a massa na bancada, forme uma bola única e pese-a. Divida em 5 porções iguais e molde 
+                    pequenas bolas.</li>
+                    <li>Tape as 5 bolas com um pano e deixe descansar por 20-25 minutos (isso facilita a extensão da massa).</li>
+                    <li>Estenda cada bola com um rolo, formando um oval alongado.</li>
+                    <li>Com uma faca ou cortador, faça cortes finos (tiras de 0,5 mm) em apenas metade da massa (no 
+                    sentido do comprimento).</li>
+                    <li>Enrole a partir do lado do recheio em direção às tiras.</li>
+                    <li>Unte ou forre com papel vegetal uma forma de aro amovível (20 cm). Disponha os 5 rolos em círculo,
+                    acompanhando a lateral da forma.</li>
+                    <li>Tape e deixe crescer por mais 1 hora.</li>
+                    <li>Pincele delicadamente com leite ou ovo batido. Leve ao forno pré-aquecido a 180°C por cerca de 
+                    40 minutos (até dourar bem).</li>
+                    <li>Deixe arrefecer ligeiramente antes de desenformar para não murchar.</li>
+                </ol>
+            </div>
+            <hr class="divisor-receita">
+                <div class="sessao-comentarios">
+                    <h3>Deixei seu afeto ou dúvida</h3>
+
+                    <div class="comentario-form">
+                        <div class="input-grupo">
+                            <label for="textarea_comentario">Seu comentário:</label>
+                            <textarea id="textarea_comentario" rows="3" placeholder="O que você achou da receita?"></textarea>
+                        </div>
+                        <button class="btn-enviar" onclick="postarComentario()">Enviar comentário</button>
+                    </div>
+
+                    <h3>Comentários da Comunidade</h3>
+                    <div class="comentarios-lista" id="div_lista_comentario">
+                    </div>
+            </div>
+            </div>
+        </div>
+
+        <script src="./../js/catalogo.js"></script>
+</body>
+</html>
+
+<script>
+    var idReceitaAtual = 4;
+
+     function postarComentario() {
+        var idUsuarioLogado = sessionStorage.idUsuario;
+        var textoComentario = document.getElementById('textarea_comentario').value;
+
+        if(textoComentario == '') {
+            alert('Por favor, digite um comentário antes de enviar.');
+            return;
+        }
+
+        fetch("/comentarios/cadastrar", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                comentarioServer: textoComentario,
+                fkReceitaServer: idReceitaAtual,
+                fkUsuarioServer: idUsuarioLogado,
+                fkComentarioServer: null
+            })
+        }).then(function (resposta) {
+            if(resposta.ok) {
+                alert ('Comentário publicado com sucesso!');
+                window.location.reload();
+            } else {
+                alert('Erro ao publicar comentário!');
+            }
+        }).catch(function (erro) {
+            console.log('Erro na requisição: ', erro);
+        });
+    }
+
+    function abrirResposta(idComentario){
+        var caixa = document.getElementById('div_resposta_' + idComentario);
+
+       if(caixa.style.display == 'none' || caixa.style.display == '') {
+        caixa.style.display = 'block';
+       } else {
+        caixa.style.display = 'none';
+       }
+    }
+
+    function enviarResposta (idComentarioPai) {
+        var idUsuarioLogado = sessionStorage.idUsuario;
+        var campoTexto = document.getElementById("textarea_resposta_" + idComentarioPai);
+        var textoDaResposta = campoTexto.value;
+        
+
+        if (idUsuarioLogado == "" || idUsuarioLogado == undefined) {
+            document.getElementById('div_modal_cadastro').style.display = 'flex';
+            return;
+        }
+
+        if(textoDaResposta == ''){
+            alert('Por favor, digite uma resposta antes de enviar!');
+            return;
+        }
+
+        fetch("/comentarios/cadastrar", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                comentarioServer: textoDaResposta,
+                fkReceitaServer: idReceitaAtual,
+                fkUsuarioServer: idUsuarioLogado,
+                fkComentarioServer: idComentarioPai
+            })
+        }).then(function (resposta) {
+            if(resposta.ok) {
+                alert ('Resposta enviada com sucesso!');
+                window.location.reload();
+            } else {
+                alert('Erro ao enviar respostas!');
+            }
+        }).catch(function (erro) {
+            console.log('Erro na requisição: ', erro);
+        });
+    }
+
+    function atualizarMural() {
+        
+
+        fetch(`/comentarios/listar/${idReceitaAtual}`, {
+            cache: 'no-store'
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (comentariosDoBanco) {
+                    console.log('Dados recebidos: ', JSON.stringify(comentariosDoBanco));
+
+                    var mural = document.getElementById('div_lista_comentario');
+                    mural.innerHTML = "";
+
+                    if (comentariosDoBanco.length == 0) {
+                        mural.innerHTML = "<p class='sem-comentarios'> Seja o primeiro a ddeixar seu afeto nesta receita!</p>"
+                    }
+
+                    for (var i = 0; i < comentariosDoBanco.length; i++) {
+                        var comentarioAtual = comentariosDoBanco[i];
+
+                        mural.innerHTML += `
+                            <div class="comentario-card">
+                                <div class="comentario-header">
+                                    <strong class="comentario-autor">${comentarioAtual.nome}</strong>
+                                    <span class="comentario-data">${comentarioAtual.dtComentario}</span>
+                                </div>
+                                <p class="comentario-texto">${comentarioAtual.comentario}</p>
+                                <button class="btn-responder" onclick="abrirResposta(${comentarioAtual.idComentario})">Responder</button>
+                            </div>
+
+                            <div class="div-resposta-input" id="div_resposta_${comentarioAtual.idComentario}" style="display: none;">
+                                <textarea rows="2" id="textarea_resposta_${comentarioAtual.idComentario}" placeholder="Escreva uma resposta"></textarea>
+                                <button class="btn-enviar" onclick="enviarResposta(${comentarioAtual.idComentario})">Enviar resposta</button>
+                            </div>
+                        `;
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        }).catch(function (erro) {
+            console.error("Erro na obtenção dos dados: ", erro.message);
+        });
+    }
+
+</script>
