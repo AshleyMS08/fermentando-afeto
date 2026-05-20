@@ -37,17 +37,14 @@
                     <h3>Receitas</h3>
                 </a>
             </div>
-
             <div class="btn-nav-white">
                 <a href="./dashboard.html">
                     <h3>Calculadora de Receitas</h3>
                 </a>
             </div>
-
             <div class="btn-nav">
                 <h3>Dashboards</h3>
             </div>
-
             <div class="btn-logout" onclick="limparSessao()">
                 <h3>Sair</h3>
             </div>
@@ -55,47 +52,40 @@
         </div>
 
         <div class="dash-right">
-
-
             <div class="avisos">
-                <div id="alerta">
-                </div>
+                <div id="alerta"></div>
                 <div class="container">
-                    <h1>Publicar um aviso</h1>
+
+                    <div class="card-aquario">
+                        <div class="title-aquario">
+                            <h1>Pão de Fermentando Natural (Levain)</h1>
+                        </div>
+                        <div class="desc-aquario">
+                            <div class="temperatura">
+                                <p>Farinha: 100% | Água: 70% | Levain: 20% | Sal: 2%</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h1>Publicar um aviso / comentário</h1>
                     <div class="div-form">
                         <form id="form_postagem" method="post" onsubmit="return publicar()">
                             <label>
-                                Título:
+                                Titulo:
                                 <br>
-                                <input name="titulo" id="titulo" maxlength="100" type="text">
+                                <input type="text">
                             </label>
-                            <br>
-                            <br>
-                            <label>
-                                Descrição (máximo de 250 caracteres):
-                                <br>
-                                <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
-                            </label>
-                            <br>
-                            <br>
-                            <button>Enviar</button>
                         </form>
                     </div>
-                    <h1>Mural de Avisos</h1>
-                    <div class="div-results">
-                        <div id="feed_container" class="feed-container">
-                        </div>
-                    </div>
+
                 </div>
-            </div>
+             </div>
         </div>
-    </div>
 
 
 
 
 </body>
-
 </html>
 
 <script>
@@ -114,7 +104,7 @@
 
         fetch(`/avisos/publicar/${idUsuario}`, {
             method: "POST",
-            headers: {"Content-Type": "aplication/json"},
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify(corpo)
         }).then(function (resposta) {
             if(resposta.ok) {
@@ -136,17 +126,17 @@
                     document.getElementById("feed_container").innerHTML = "<span>Nenhum comentário ainda, Seja o primeiro!</span>";
                     return;
                 }
-                resposta.json().then(function (reposta) {
+                resposta.json().then(function (resposta) {
                     var feed = document.getElementById("feed_container");
                     feed.innerHTML = "";
                     for(let i = 0; i < resposta.length; i++) {
-                        var publicacao = reposta[i];
+                        var publicacao = resposta[i];
 
                         feed.innerHTML += `
                             <div class="publicacao">
-                                <span class="publicacao-nome"><br> Autor: <b> ${publicacao.nome}</b></span>
-                                <span class="publicacao-titulo"><br> Autor: <b> ${publicacao.nome}</b></span>
-                                <span class="publicacao-nome"><br> Autor: <b> ${publicacao.nome}</b></span>
+                                <span class="publicacao-nome"> Autor: <b>${publicacao.nome}</b></span>
+                                <span class="publicacao-titulo"> Título: <b>${publicacao.titulo}</b></span>
+                                <span class="publicacao-descricao"> Descrição: <b> ${publicacao.descricao}</b></span>
                                 </div>
                             
                             
@@ -154,6 +144,6 @@
                     }
                 })
             }
-        })
+        }).catch(function (erro) {console.log(erro); });
     }
 </script>

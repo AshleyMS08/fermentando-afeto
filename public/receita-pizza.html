@@ -193,7 +193,7 @@
                 fkComentarioServer: null
             })
         }).then(function (resposta) {
-            if(respposta.ok) {
+            if(resposta.ok) {
                 alert ('Comentário publicado com sucesso!');
                 window.location.reload();
             } else {
@@ -202,15 +202,15 @@
         }).catch(function (erro) {
             console.log('Erro na requisição: ', erro);
         });
-
+    }
 
     function abrirResposta(idComentario){
-        var caixa = document.getElementById('div_resposta_' + idComentario)
+        var caixa = document.getElementById('div_resposta_' + idComentario);
 
-       if(div_resposta.style.display == 'none' || div_resposta.style.display == '') {
-        div_resposta.style.display = 'block';
+       if(caixa.style.display == 'none' || caixa.style.display == '') {
+        caixa.style.display = 'block';
        } else {
-        div_resposta.style.display = 'none';
+        caixa.style.display = 'none';
        }
     }
 
@@ -242,7 +242,7 @@
                 fkComentarioServer: idComentarioPai
             })
         }).then(function (resposta) {
-            if(respposta.ok) {
+            if(resposta.ok) {
                 alert ('Resposta enviada com sucesso!');
                 window.location.reload();
             } else {
@@ -263,7 +263,8 @@
                 resposta.json().then(function (comentariosDoBanco) {
                     console.log('Dados recebidos: ', JSON.stringify(comentariosDoBanco));
 
-                    var mural = document.getElementById('div_lista_comentarios');
+                    var mural = document.getElementById('div_lista_comentario');
+                    mural.innerHTML = "";
 
                     if (comentariosDoBanco.length == 0) {
                         mural.innerHTML = "<p class='sem-comentarios'> Seja o primeiro a ddeixar seu afeto nesta receita!</p>"
@@ -286,7 +287,6 @@
                                 <textarea rows="2" id="textarea_resposta_${comentarioAtual.idComentario}" placeholder="Escreva uma resposta"></textarea>
                                 <button class="btn-enviar" onclick="enviarResposta(${comentarioAtual.idComentario})">Enviar resposta</button>
                             </div>
-                        </div>
                         `;
                     }
                 });
@@ -298,5 +298,4 @@
         });
     }
 
-}
 </script>
