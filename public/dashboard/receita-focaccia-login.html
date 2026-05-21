@@ -2,75 +2,85 @@
 <html lang="pt-br">
 
 <head>
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receitas | Focaccia</title>
 
-    <title>Receitas | Focaccia </title>
-    <script src="./js/sessao.js"></script>
+    <link rel="stylesheet" href="./../css/dashboards.css">
+    <link rel="stylesheet" href="./../css/estilo.css" />
+    <script src="../js/sessao.js"></script>
+    <script src="./../js/alerta.js"></script>
 
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 </head>
 
-<body onload="atualizarMural()">
+<body onload="validarSessao(), atualizarMural()">
 
-    <!--header inicio-->
-    <div class="header">
-        <div class="container">
-            <h1 class="titulo">Fermentando Afeto</h1>
-            <ul class="navbar">
-                <li>
-                    <a href="./index.html">Home</a>
-                </li>
-                <li>
-                    <a href="./simulador.html">Receitas</a>
-                </li>
-                <li>|</li>
-                <li>
-                    <a href="./login.html">Login</a>
-                </li>
-                <li>
-                    <a href="./cadastro.html">Cadastro</a>
-                </li>
-            </ul>
+    <div class="janela">
+
+
+        <div class="header-left">
+
+            <h1>Fermentando Afeto</h1>
+
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="cards.html">
+                    <h3>Receitas favoritas</h3>
+                </a>
+            </div>
+            <div class="btn-nav-white">
+                <a href="./dashboard.html">
+                    <h3>Dashboard</h3>
+                </a>
+            </div>
+            <div class="btn-nav">
+                <a href="./mural.html">
+                    <h3>Catálogo de receitas</h3>
+                </a>
+            </div>
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
         </div>
-    </div>
+        
+        <div class="dash area-receita">
+            <div class="container-voltar">
+                <a href="./mural.html" class="btn-voltar">←</a>
+            </div>
+            <div class="receita-container">
+                <div class="receita-header">
+                    <h2>Focaccia</h2>
+                    <p class="receita-dados">
+                        <span>Rendimento: 1 assadeira grande</span> |
+                        <span> Tempo de frigorífico: 12 a 24 horas</span> |
+                        <span>Forno: 230°C</span>
+                    </p>
+                </div>
 
-    <div class="container-voltar">
-        <li>
-            <a href="./simulador.html" class="btn-voltar">←</a>
-        </li>
-    </div>
+                <img src="./focaccia_header.png" class="img-receita">
 
+                <h3>Ingredientes</h3>
+                <ul class="lista-ingredientes">
+                    <li>500 gramas de farinha de trigo T65 ou Forte (Alta Proteína/Manitoba)</li>
+                    <li>400 mililitros de Água fria</li>
+                    <li>3 gramas de Fermento biológico seco</li>
+                    <li>10 gramas de sal</li>
+                    <li>40 mililitros Azeite de oliva extravirgem</li>
+                    <li>Opcional: Alecrim fresco, sal grosso ou tomate-cereja.</li>
+                </ul>
+                    
 
-    <!--receita inicio-->
-    <div class="receita-container">
-        <div class="receita-header">
-            <h2>Focaccia</h2>
-            <p class="receita-dados">
-                <span>Rendimento: 1 assadeira grande</span> |
-                <span> Tempo de frigorífico: 12 a 24 horas</span> |
-                <span>Forno: 230°C</span>
-            </p>
-        </div>
-
-        <img src="../focaccia_header.png" class="img-receita">
-
-        <h3>Ingredientes</h3>
-        <ul class="lista-ingredientes">
-            <li>500 gramas de farinha de trigo T65 ou Forte (Alta Proteína/Manitoba)</li>
-            <li>400 mililitros de Água fria</li>
-            <li>3 gramas de Fermento biológico seco</li>
-            <li>10 gramas de sal</li>
-            <li>40 mililitros Azeite de oliva extravirgem</li>
-            <li>Opcional: Alecrim fresco, sal grosso ou tomate-cereja.</li>
-        </ul>
-
-
-        <h3>Modo de Preparo</h3>
-        <ol class="modo-preparo">
+                    <h3>Modo de Preparo</h3>
+                    <ol class="modo-preparo">
             <li>Inicial: Numa taça grande, dissolva o fermento na água fria. Adicione a farinha e
                 misture com uma espátula até que não haja farinha seca. Deixe descansar tapado por 15 minutos
                 (Autólise).</li>
@@ -110,89 +120,39 @@
 
             <li>Cozer: Leve ao forno a 230°C por 20 a 25 minutos, até que a base esteja bem dourada e estaladiça e o
                 topo bem tostado.</li>
-        </ol>
-
-    </div>
-    <!--receita fim-->
-
-    <!--sessão de comentários início-->
-    <hr class="divisor-receita">
-    <div class="sessao-comentarios">
-        <h3>Deixei seu afeto ou dúvida</h3>
-
-        <div class="comentario-form">
-            <div class="input-grupo">
-                <label for="textarea_comentario">Seu comentário:</label>
-                <textarea id="textarea_comentario" rows="3" placeholder="O que você achou da receita?"></textarea>
+	</ol>
             </div>
-            <button class="btn-enviar" onclick="postarComentario()">Enviar comentário</button>
-        </div>
+            <hr class="divisor-receita">
+                <div class="sessao-comentarios">
+                    <h3>Deixei seu afeto ou dúvida</h3>
 
-        <h3>Comentários da Comunidade</h3>
-        <div class="comentarios-lista" id="div_lista_comentario">
-            <div class="comentario-grupo">
-                <div class="comentario-card">
-                    <div class="comentario-header">
-                        <strong class="comentario-autor"></strong>
-                        <span class="comentario-data"></span>
-                    </div>
-                    <p class="comentario-texto"></p>
-                    <button class="btn-responder" onclick="abrirResposta(1)">Responder</button>
-                </div>
-
-                <div class="div-resposta-input" id="div_resposta_1" style="display: none;">
-                    <textarea rows="2" id="textarea_resposta_1" placeholder="Escreva uma resposta"></textarea>
-                    <button class="btn-enviar" onclick="enviarResposta(1)">Enviar resposta</button>
-                </div>
-
-                <div class="comentario-respostas">
-                    <div class="comentario-card respostas">
-                        <div class="comentario-header">
-                            <strong class="comentario-autor"></strong>
-                            <span class="comentario-data"></span>
+                    <div class="comentario-form">
+                        <div class="input-grupo">
+                            <label for="textarea_comentario">Seu comentário:</label>
+                            <textarea id="textarea_comentario" rows="3" placeholder="O que você achou da receita?"></textarea>
                         </div>
-                        <p class="comentario-texto"></p>
+                        <button class="btn-enviar" onclick="postarComentario()">Enviar comentário</button>
                     </div>
-                </div>
 
+                    <h3>Comentários da Comunidade</h3>
+                    <div class="comentarios-lista" id="div_lista_comentario">
+                    </div>
+            </div>
             </div>
         </div>
-    </div>
-    <!--sessão de comentários fim-->
 
-    <!-- pop-up alerta de login início -->
-    <div id="div_modal_cadastro" class="modal-container" style="display: none;">
-        <div class="modal-conteudo">
-            <h2>Ops! Você não está logado</h2>
-            <p>Para interagir com a comunidade e deixar seu afeto na receita, você precisa ter uma conta.</p>
-
-            <div class="modal-botoes">
-                <button class="btn-enviar" onclick="window.location='./cadastro.html'">Criar uma conta</button>
-                <button class="btn-link-login" onclick="window.location='./login.html'">Já tenho uma conta</button>
-            </div>
-
-            <button class="btn-fechar-modal" onclick="fecharModal()">Voltar para receita</button>
-        </div>
-    </div>
-    <!-- pop-up alerta de login fim -->
-
+        <script src="./../js/catalogo.js"></script>
 </body>
-
 </html>
 
 <script>
-    function postarComentario() {
+    var idReceitaAtual = 4;
+
+     function postarComentario() {
         var idUsuarioLogado = sessionStorage.idUsuario;
         var textoComentario = document.getElementById('textarea_comentario').value;
 
-        var idReceitaAtual = 3;
-
-        if (idUsuarioLogado == undefined || idUsuarioLogado == '') {
-            document.getElementById('div_modal_cadastro').style.display = 'flex';
-            return
-        }
-
-        if (textoComentario == '') {
+        if(textoComentario == '') {
             alert('Por favor, digite um comentário antes de enviar.');
             return;
         }
@@ -209,8 +169,8 @@
                 fkComentarioServer: null
             })
         }).then(function (resposta) {
-            if (resposta.ok) {
-                alert('Comentário publicado com sucesso!');
+            if(resposta.ok) {
+                alert ('Comentário publicado com sucesso!');
                 window.location.reload();
             } else {
                 alert('Erro ao publicar comentário!');
@@ -220,28 +180,28 @@
         });
     }
 
-    function abrirResposta(idComentario) {
+    function abrirResposta(idComentario){
         var caixa = document.getElementById('div_resposta_' + idComentario);
 
-        if (caixa.style.display == 'none' || caixa.style.display == '') {
-            caixa.style.display = 'block';
-        } else {
-            caixa.style.display = 'none';
-        }
+       if(caixa.style.display == 'none' || caixa.style.display == '') {
+        caixa.style.display = 'block';
+       } else {
+        caixa.style.display = 'none';
+       }
     }
 
-    function enviarResposta(idComentarioPai) {
+    function enviarResposta (idComentarioPai) {
         var idUsuarioLogado = sessionStorage.idUsuario;
         var campoTexto = document.getElementById("textarea_resposta_" + idComentarioPai);
         var textoDaResposta = campoTexto.value;
-        var idReceitaAtual = 3;
+        
 
         if (idUsuarioLogado == "" || idUsuarioLogado == undefined) {
             document.getElementById('div_modal_cadastro').style.display = 'flex';
             return;
         }
 
-        if (textoDaResposta == '') {
+        if(textoDaResposta == ''){
             alert('Por favor, digite uma resposta antes de enviar!');
             return;
         }
@@ -258,8 +218,8 @@
                 fkComentarioServer: idComentarioPai
             })
         }).then(function (resposta) {
-            if (resposta.ok) {
-                alert('Resposta enviada com sucesso!');
+            if(resposta.ok) {
+                alert ('Resposta enviada com sucesso!');
                 window.location.reload();
             } else {
                 alert('Erro ao enviar respostas!');
@@ -270,7 +230,7 @@
     }
 
     function atualizarMural() {
-        var idReceitaAtual = 3;
+        
 
         fetch(`/comentarios/listar/${idReceitaAtual}`, {
             cache: 'no-store'

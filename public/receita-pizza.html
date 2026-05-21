@@ -43,59 +43,67 @@
             <a href="./simulador.html" class="btn-voltar">←</a>
         </li>
     </div>
-    
+
 
     <!--receita inicio-->
     <div class="receita-container">
         <div class="receita-header">
             <h2>Massa de Pizza</h2>
-                <p class="receita-dados"> 
+            <p class="receita-dados">
                 <span>Rendimento: 1 pão (forma de 20 cm)</span> |
                 <span> Tempo de espera: 3h30</span> |
                 <span>Forno: 180°C</span>
-                </p>
+            </p>
         </div>
-        
+
         <img src="../pizza_header.png" class="img-receita">
 
         <h3>Ingredientes</h3>
         <ul class="lista-ingredientes">
-        <li>740 gramas de farinha de trigo</li>
-        <li>20 gramas de fermento biológico seco</li>
-        <li>2 colheres de chá de açúcar</li>
-        <li>2 colheres de chá de sal</li>
-        <li>2 1/2 xícara de chá de água morna</li>
-        <li>1/4 de xícara de chá de azeite</li></ul>
-        
+            <li>740 gramas de farinha de trigo</li>
+            <li>20 gramas de fermento biológico seco</li>
+            <li>2 colheres de chá de açúcar</li>
+            <li>2 colheres de chá de sal</li>
+            <li>2 1/2 xícara de chá de água morna</li>
+            <li>1/4 de xícara de chá de azeite</li>
+        </ul>
+
 
         <h3>Modo de Preparo</h3>
         <ol class="modo-preparo">
-        <li>Numa tigela, misture o fermento e o açúcar. Regue com a água morna e, com uma colher, 
-	misture bem para dissolver. Deixe em temperatura ambiente até espumar cerca de 5 minutos.</li>
+            <li>Numa tigela, misture o fermento e o açúcar. Regue com a água morna e, com uma colher,
+                misture bem para dissolver. Deixe em temperatura ambiente até espumar cerca de 5 minutos.</li>
 
-        <li>Enquanto isso, na tigela da batedeira, misture a farinha com o sal e abra um buraco no centro. 
-	Separe uma tigela ou outro recipiente grande e unte com 2 colheres de sopa de azeite ela tem que 
-	ter espaço suficiente para a massa crescer bastante.</li>
+            <li>Enquanto isso, na tigela da batedeira, misture a farinha com o sal e abra um buraco no centro.
+                Separe uma tigela ou outro recipiente grande e unte com 2 colheres de sopa de azeite ela tem que
+                ter espaço suficiente para a massa crescer bastante.</li>
 
-        <li>Assim que espumar, despeje a mistura de fermento no centro da tigela com farinha. Adicione um 
-	quarto de xícara de chá de azeite e misture, com uma espátula, apenas para incorporar.</li>
+            <li>Assim que espumar, despeje a mistura de fermento no centro da tigela com farinha. Adicione um
+                quarto de xícara de chá de azeite e misture, com uma espátula, apenas para incorporar.</li>
 
-        <li>Para sovar a massa, encaixe a tigela na batedeira com o gancho. Comece a bater em velocidade 
-	baixa por 5 minutos, aumente a velocidade aos poucos para alta e deixe bater por mais 15 minutos 
-	até formar uma massa lisa. Ela vai descolar da lateral da tigela e formar uma bola no gancho da batedeira.</li>
+            <li>Para sovar a massa, encaixe a tigela na batedeira com o gancho. Comece a bater em velocidade
+                baixa por 5 minutos, aumente a velocidade aos poucos para alta e deixe bater por mais 15 minutos
+                até formar uma massa lisa. Ela vai descolar da lateral da tigela e formar uma bola no gancho da
+                batedeira.</li>
 
-        <li>Com as pontas dos dedos ou uma espátula, desgrude a massa da tigela da batedeira e transfira para o 
-	recipiente untado com azeite. Cubra com filme e deixe descansar por 1 hora, até crescer e dobrar de volume.</li>
+            <li>Com as pontas dos dedos ou uma espátula, desgrude a massa da tigela da batedeira e transfira para o
+                recipiente untado com azeite. Cubra com filme e deixe descansar por 1 hora, até crescer e dobrar de
+                volume.</li>
 
-        <li>Quando faltarem 30 minutos para completar o tempo de crescimento da massa, preaqueça o forno a 250 graus. 
-	Se for utilizar uma assadeira de pedra sabão, coloque-a dentro do forno ainda frio para aquecer desde o início. 
-	Caso contrário, ela pode rachar com o choque térmico.</li>
+            <li>Quando faltarem 30 minutos para completar o tempo de crescimento da massa, preaqueça o forno a 250
+                graus.
+                Se for utilizar uma assadeira de pedra sabão, coloque-a dentro do forno ainda frio para aquecer desde o
+                início.
+                Caso contrário, ela pode rachar com o choque térmico.</li>
 
-        <li>Polvilhe uma bancada lisa com farinha de trigo, transfira a massa de pizza para a bancada e, com uma espátula 
-	ou faca, divida em 4 porções.</li>
+            <li>Polvilhe uma bancada lisa com farinha de trigo, transfira a massa de pizza para a bancada e, com uma
+                espátula
+                ou faca, divida em 4 porções.</li>
 
-	<li>Utilize a seguir ou, se preferir, embale individualmente com filme e armazene na geladeira por 3 dias ou no 
-	congelador por até 1 mês.</li></ol>
+            <li>Utilize a seguir ou, se preferir, embale individualmente com filme e armazene na geladeira por 3 dias ou
+                no
+                congelador por até 1 mês.</li>
+        </ol>
 
     </div>
     <!--receita fim-->
@@ -162,6 +170,7 @@
     <!-- pop-up alerta de login fim -->
 
 </body>
+
 </html>
 
 <script>
@@ -171,12 +180,12 @@
 
         var idReceitaAtual = 1;
 
-        if (idUsuarioLogado == undefined || idUsuarioLogado == ''){
+        if (idUsuarioLogado == undefined || idUsuarioLogado == '') {
             document.getElementById('div_modal_cadastro').style.display = 'flex';
             return
         }
 
-        if(textoComentario == '') {
+        if (textoComentario == '') {
             alert('Por favor, digite um comentário antes de enviar.');
             return;
         }
@@ -193,8 +202,8 @@
                 fkComentarioServer: null
             })
         }).then(function (resposta) {
-            if(resposta.ok) {
-                alert ('Comentário publicado com sucesso!');
+            if (resposta.ok) {
+                alert('Comentário publicado com sucesso!');
                 window.location.reload();
             } else {
                 alert('Erro ao publicar comentário!');
@@ -204,17 +213,17 @@
         });
     }
 
-    function abrirResposta(idComentario){
+    function abrirResposta(idComentario) {
         var caixa = document.getElementById('div_resposta_' + idComentario);
 
-       if(caixa.style.display == 'none' || caixa.style.display == '') {
-        caixa.style.display = 'block';
-       } else {
-        caixa.style.display = 'none';
-       }
+        if (caixa.style.display == 'none' || caixa.style.display == '') {
+            caixa.style.display = 'block';
+        } else {
+            caixa.style.display = 'none';
+        }
     }
 
-    function enviarResposta (idComentarioPai) {
+    function enviarResposta(idComentarioPai) {
         var idUsuarioLogado = sessionStorage.idUsuario;
         var campoTexto = document.getElementById("textarea_resposta_" + idComentarioPai);
         var textoDaResposta = campoTexto.value;
@@ -225,7 +234,7 @@
             return;
         }
 
-        if(textoDaResposta == ''){
+        if (textoDaResposta == '') {
             alert('Por favor, digite uma resposta antes de enviar!');
             return;
         }
@@ -242,8 +251,8 @@
                 fkComentarioServer: idComentarioPai
             })
         }).then(function (resposta) {
-            if(resposta.ok) {
-                alert ('Resposta enviada com sucesso!');
+            if (resposta.ok) {
+                alert('Resposta enviada com sucesso!');
                 window.location.reload();
             } else {
                 alert('Erro ao enviar respostas!');
