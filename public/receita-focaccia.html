@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Receitas | Focaccia </title>
+    <script src="./js/sessao.js"></script>
+
+    <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="icon" href="./assets/icon/favicon2.ico">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+</head>
+
+<body onload="atualizarMural()">
+
+    <!--header inicio-->
+    <div class="header">
+        <div class="container">
+            <h1 class="titulo">Fermentando Afeto</h1>
+            <ul class="navbar">
+                <li>
+                    <a href="./index.html">Home</a>
+                </li>
+                <li>
+                    <a href="./simulador.html">Receitas</a>
+                </li>
+                <li>|</li>
+                <li>
+                    <a href="./login.html">Login</a>
+                </li>
+                <li>
+                    <a href="./cadastro.html">Cadastro</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-voltar">
+        <li>
+            <a href="./simulador.html" class="btn-voltar">←</a>
+        </li>
+    </div>
+    
+
+    <!--receita inicio-->
+    <div class="receita-container">
+        <div class="receita-header">
+            <h2>Focaccia</h2>
+                <p class="receita-dados"> 
+                <span>Rendimento: 1 assadeira grande</span> |
+                <span> Tempo de frigorífico: 12 a 24 horas</span> |
+                <span>Forno: 230°C</span>
+                </p>
+        </div>
+        
+        <img src="../focaccia_header.png" class="img-receita">
+
+        <h3>Ingredientes</h3>
+        <ul class="lista-ingredientes">
+        <li>500 gramas de farinha de trigo T65 ou Forte (Alta Proteína/Manitoba)</li>
+        <li>400 mililitros de Água fria</li>
+        <li>3 gramas de Fermento biológico seco</li>
+        <li>10 gramas de sal</li>
+        <li>40 mililitros Azeite de oliva extravirgem</li>
+        <li>Opcional: Alecrim fresco, sal grosso ou tomate-cereja.</li></ul>
+        
+
+        <h3>Modo de Preparo</h3>
+        <ol class="modo-preparo">
+        <liMistura Inicial: Numa taça grande, dissolva o fermento na água fria. Adicione a farinha e 
+	misture com uma espátula até que não haja farinha seca. Deixe descansar tapado por 15 minutos 
+	(Autólise).</li>
+
+        <li>Adicionar Sal e Azeite: Junte o sal e os 40 ml de azeite. Integre bem na massa apertando 
+	com as mãos. A massa vai parecer desajeitada e muito húmida, é normal.</li>
+
+        <li>Com as mãos húmidas, pegue num lado da massa, puxe para cima e dobre sobre o centro. Repita nos 4 lados da massa.</li>
+
+        <li>Tape e espere 15 minutos. Faça mais uma série de dobras. A massa começará a ficar mais lisa e elástica.</li>
+
+        <li>A Longa Espera (12h a 24h): Regue a massa com um fio de azeite, cubra a taça hermeticamente (ou com 
+	película aderente bem vedada) e leve ao frigorífico por 12 a 24 horas. É lá dentro, no frio, que a mágica 
+	acontece e o sabor se desenvolve.</li>
+
+        <li>Transferência: Retire a massa do frigorífico (notará que ela já tem algumas bolhas). Despeje uma 
+	quantidade generosa de azeite no fundo da sua assadeira. Transfira a massa fria diretamente para a assadeira.</li>
+
+        <li>O Segundo Descanso (Crucial): Vire a massa no azeite para que fique lubrificada de ambos os lados. Deixe a 
+	massa descansar à temperatura ambiente, destapada, por 2 a 4 horas (dependendo da temperatura do dia). Ela 
+	precisa perder o frio do frigorífico, relaxar e expandir sozinha até cobrir quase toda a assadeira.</li>
+
+	<li>Pré-aqueça o forno a 230°C (o mais quente que conseguir) uns 30 minutos antes de cozer.</li>
+
+	<li>Regue o topo da massa com mais um pouco de azeite.</li>
+
+	<li>Unte os dedos e afunde-os firmemente na massa até tocar o fundo da forma. Verá bolhas gigantes a rebentar e a formar-se.</li>
+
+	<li>Finalização: Distribua o sal grosso, o alecrim ou os seus ingredientes favoritos por cima.</li>
+
+	<li>Cozer: Leve ao forno a 230°C por 20 a 25 minutos, até que a base esteja bem dourada e estaladiça e o topo bem tostado.</li></ol>
+
+    </div>
+    <!--receita fim-->
+
+    <!--sessão de comentários início-->
+    <hr class="divisor-receita">
+    <div class="sessao-comentarios">
+        <h3>Deixei seu afeto ou dúvida</h3>
+
+        <div class="comentario-form">
+            <div class="input-grupo">
+                <label for="textarea_comentario">Seu comentário:</label>
+                <textarea id="textarea_comentario" rows="3" placeholder="O que você achou da receita?"></textarea>
+            </div>
+            <button class="btn-enviar" onclick="postarComentario()">Enviar comentário</button>
+        </div>
+
+        <h3>Comentários da Comunidade</h3>
+        <div class="comentarios-lista" id="div_lista_comentario">
+            <div class="comentario-grupo">
+                <div class="comentario-card">
+                    <div class="comentario-header">
+                        <strong class="comentario-autor"></strong>
+                        <span class="comentario-data"></span>
+                    </div>
+                    <p class="comentario-texto"></p>
+                    <button class="btn-responder" onclick="abrirResposta(1)">Responder</button>
+                </div>
+
+                <div class="div-resposta-input" id="div_resposta_1" style="display: none;">
+                    <textarea rows="2" id="textarea_resposta_1" placeholder="Escreva uma resposta"></textarea>
+                    <button class="btn-enviar" onclick="enviarResposta(1)">Enviar resposta</button>
+                </div>
+
+                <div class="comentario-respostas">
+                    <div class="comentario-card respostas">
+                        <div class="comentario-header">
+                            <strong class="comentario-autor"></strong>
+                            <span class="comentario-data"></span>
+                        </div>
+                        <p class="comentario-texto"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--sessão de comentários fim-->
+
+    <!-- pop-up alerta de login início -->
+    <div id="div_modal_cadastro" class="modal-container" style="display: none;">
+        <div class="modal-conteudo">
+            <h2>Ops! Você não está logado</h2>
+            <p>Para interagir com a comunidade e deixar seu afeto na receita, você precisa ter uma conta.</p>
+
+            <div class="modal-botoes">
+                <button class="btn-enviar" onclick="window.location='./cadastro.html'">Criar uma conta</button>
+                <button class="btn-link-login" onclick="window.location='./login.html'">Já tenho uma conta</button>
+            </div>
+
+            <button class="btn-fechar-modal" onclick="fecharModal()">Voltar para receita</button>
+        </div>
+    </div>
+    <!-- pop-up alerta de login fim -->
+
+</body>
+</html>
+
+<script>
+    function postarComentario() {
+        var idUsuarioLogado = sessionStorage.idUsuario;
+        var textoComentario = document.getElementById('textarea_comentario').value;
+
+        var idReceitaAtual = 3;
+
+        if (idUsuarioLogado == undefined || idUsuarioLogado == ''){
+            document.getElementById('div_modal_cadastro').style.display = 'flex';
+            return
+        }
+
+        if(textoComentario == '') {
+            alert('Por favor, digite um comentário antes de enviar.');
+            return;
+        }
+
+        fetch("/comentarios/cadastrar", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                comentarioServer: textoComentario,
+                fkReceitaServer: idReceitaAtual,
+                fkUsuarioServer: idUsuarioLogado,
+                fkComentarioServer: null
+            })
+        }).then(function (resposta) {
+            if(resposta.ok) {
+                alert ('Comentário publicado com sucesso!');
+                window.location.reload();
+            } else {
+                alert('Erro ao publicar comentário!');
+            }
+        }).catch(function (erro) {
+            console.log('Erro na requisição: ', erro);
+        });
+    }
+
+    function abrirResposta(idComentario){
+        var caixa = document.getElementById('div_resposta_' + idComentario);
+
+       if(caixa.style.display == 'none' || caixa.style.display == '') {
+        caixa.style.display = 'block';
+       } else {
+        caixa.style.display = 'none';
+       }
+    }
+
+    function enviarResposta (idComentarioPai) {
+        var idUsuarioLogado = sessionStorage.idUsuario;
+        var campoTexto = document.getElementById("textarea_resposta_" + idComentarioPai);
+        var textoDaResposta = campoTexto.value;
+        var idReceitaAtual = 3;
+
+        if (idUsuarioLogado == "" || idUsuarioLogado == undefined) {
+            document.getElementById('div_modal_cadastro').style.display = 'flex';
+            return;
+        }
+
+        if(textoDaResposta == ''){
+            alert('Por favor, digite uma resposta antes de enviar!');
+            return;
+        }
+
+        fetch("/comentarios/cadastrar", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                comentarioServer: textoDaResposta,
+                fkReceitaServer: idReceitaAtual,
+                fkUsuarioServer: idUsuarioLogado,
+                fkComentarioServer: idComentarioPai
+            })
+        }).then(function (resposta) {
+            if(resposta.ok) {
+                alert ('Resposta enviada com sucesso!');
+                window.location.reload();
+            } else {
+                alert('Erro ao enviar respostas!');
+            }
+        }).catch(function (erro) {
+            console.log('Erro na requisição: ', erro);
+        });
+    }
+
+    function atualizarMural() {
+        var idReceitaAtual = 3;
+
+        fetch(`/comentarios/listar/${idReceitaAtual}`, {
+            cache: 'no-store'
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (comentariosDoBanco) {
+                    console.log('Dados recebidos: ', JSON.stringify(comentariosDoBanco));
+
+                    var mural = document.getElementById('div_lista_comentario');
+                    mural.innerHTML = "";
+
+                    if (comentariosDoBanco.length == 0) {
+                        mural.innerHTML = "<p class='sem-comentarios'> Seja o primeiro a ddeixar seu afeto nesta receita!</p>"
+                    }
+
+                    for (var i = 0; i < comentariosDoBanco.length; i++) {
+                        var comentarioAtual = comentariosDoBanco[i];
+
+                        mural.innerHTML += `
+                            <div class="comentario-card">
+                                <div class="comentario-header">
+                                    <strong class="comentario-autor">${comentarioAtual.nome}</strong>
+                                    <span class="comentario-data">${comentarioAtual.dtComentario}</span>
+                                </div>
+                                <p class="comentario-texto">${comentarioAtual.comentario}</p>
+                                <button class="btn-responder" onclick="abrirResposta(${comentarioAtual.idComentario})">Responder</button>
+                            </div>
+
+                            <div class="div-resposta-input" id="div_resposta_${comentarioAtual.idComentario}" style="display: none;">
+                                <textarea rows="2" id="textarea_resposta_${comentarioAtual.idComentario}" placeholder="Escreva uma resposta"></textarea>
+                                <button class="btn-enviar" onclick="enviarResposta(${comentarioAtual.idComentario})">Enviar resposta</button>
+                            </div>
+                        `;
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        }).catch(function (erro) {
+            console.error("Erro na obtenção dos dados: ", erro.message);
+        });
+    }
+
+</script>

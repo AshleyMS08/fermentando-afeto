@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Receitas | Cinnamon Rolls</title>
+    <script src="./js/sessao.js"></script>
+
+    <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="icon" href="./assets/icon/favicon2.ico">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+</head>
+
+<body onload="atualizarMural()">
+
+    <!--header inicio-->
+    <div class="header">
+        <div class="container">
+            <h1 class="titulo">Fermentando Afeto</h1>
+            <ul class="navbar">
+                <li>
+                    <a href="./index.html">Home</a>
+                </li>
+                <li>
+                    <a href="./simulador.html">Receitas</a>
+                </li>
+                <li>|</li>
+                <li>
+                    <a href="./login.html">Login</a>
+                </li>
+                <li>
+                    <a href="./cadastro.html">Cadastro</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-voltar">
+        <li>
+            <a href="./simulador.html" class="btn-voltar">←</a>
+        </li>
+    </div>
+    
+
+    <!--receita inicio-->
+    <div class="receita-container">
+        <div class="receita-header">
+            <h2>Cinnamon Rolls</h2>
+                <p class="receita-dados"> 
+                <span>Rendimento: 12 rolos grandes</span> |
+                <span>Tempo total: 4h30 a 5h00</span> |
+                <span>Forno: 180°C</span>
+                </p>
+        </div>
+        
+        <img src="../cinnmon_header.png" class="img-receita">
+
+        <h3>Ingredientes</h3>
+        <ul class="lista-ingredientes">
+        <li>500 g de farinha de trigo</li>
+        <li>220 ml de leite gordo (frio ou à temperatura ambiente)</li>
+        <li>75 g de manteiga sem sal (derretida e já morna)</li>
+        <li>60 g de açúcar branco granulado</li>
+        <li>2 ovos grandes (à temperatura ambiente)</li>
+        <li>3,5 g de fermento biológico seco (apenas metade de um saquete normal)</li>
+	<li>8 g de sal fino (1 colher de chá)</li>
+	<li>150 g de açúcar mascavado (essencial para reter humidade e criar o caramelo)</li>
+	<li>80 g de manteiga em ponto pomada (textura muito macia, mas não líquida)</li>
+	<li>2,5 colheres de sopa bem cheias de canela em pó</li></ul>
+        
+
+        <h3>Modo de Preparo</h3>
+        <ol class="modo-preparo">
+        <li></li>
+
+        <li>Ativação: Numa taça, misture o leite, o fermento seco e uma colher de sopa do açúcar
+	 total. Deixe repousar por 10 minutos até criar uma leve espuma.</li>
+
+        <li>Amassar: Na batedeira (com o gancho de amassar) ou à mão na bancada, junte a farinha, 
+	o restante açúcar e o sal. Adicione os ovos batidos, a manteiga derretida e a mistura do leite.</li>
+
+        <li>Desenvolvimento do Glúten: Sove a massa continuamente por 12 a 15 minutos. Como usamos muito 
+	menos fermento, a estrutura da massa depende de uma sova excelente. Ela deve transformar-se numa 
+	bola completamente lisa, elástica e acetinada (deve passar no teste do véu sem rasgar).</li>
+
+        <li>O Descanso Lento: Coloque a massa numa taça levemente untada. Vede a boca da taça perfeitamente 
+	com película aderente (não use apenas um pano, para a massa não secar durante este longo período).</li>
+
+        <li>Crescimento: Deixe a massa descansar num local fresco e resguardado (idealmente entre os 20°C e 
+	22°C) por 2 horas e meia a 3 horas. Ela vai duplicar de volume muito devagar, desenvolvendo os açúcares 
+	e criando uma textura incrivelmente macia.</li>
+
+        <li>Extensão: Despeje a massa crescida na bancada polvilhada com uma fina camada de farinha. Com o rolo, 
+	estenda-a com calma até obter um retângulo uniforme de cerca de 45x35 cm.</li>
+
+        <li>Camada de Canela: Espalhe a manteiga em ponto pomada por toda a superfície. Numa taça à parte, 
+	misture o açúcar mascavado com a canela em pó e salpique esta mistura sobre a manteiga, pressionando 
+	suavemente com as palmas das mãos para fixar o recheio.</li>
+
+	<li>Corte Perfeito: Enrole a massa a partir do lado mais comprido para gerar um rolo firme e apertado. 
+	Utilizando um pedaço de fio dental (sem sabor) ou linha de costura resistente, faça laços ao redor do 
+	rolo para cortar 12 fatias iguais sem esmagar o desenho espiral.</li>
+
+        <li>Crescimento Final: Disponha os rolos numa assadeira retangular grande previamente untada com manteiga, 
+	mantendo um espaçamento de 1,5 cm entre eles. Tape com um pano leve e deixe crescer por mais 45 a 60 minutos 
+	à temperatura ambiente (eles vão expandir e encostar uns nos outros).</li>
+
+        <li>Cozedura: Nos últimos 20 minutos de crescimento, pré-aqueça o forno a 180°C. Coloque a assadeira na grade 
+	central e coza por 22 a 25 minutos. Estarão prontos assim que o topo apresentar uma cor dourada uniforme. 
+	Retire imediatamente para não secar o interior.</li>
+	</ol>
+
+    </div>
+    <!--receita fim-->
+
+    <!--sessão de comentários início-->
+    <hr class="divisor-receita">
+    <div class="sessao-comentarios">
+        <h3>Deixei seu afeto ou dúvida</h3>
+
+        <div class="comentario-form">
+            <div class="input-grupo">
+                <label for="textarea_comentario">Seu comentário:</label>
+                <textarea id="textarea_comentario" rows="3" placeholder="O que você achou da receita?"></textarea>
+            </div>
+            <button class="btn-enviar" onclick="postarComentario()">Enviar comentário</button>
+        </div>
+
+        <h3>Comentários da Comunidade</h3>
+        <div class="comentarios-lista" id="div_lista_comentario">
+            <div class="comentario-grupo">
+                <div class="comentario-card">
+                    <div class="comentario-header">
+                        <strong class="comentario-autor"></strong>
+                        <span class="comentario-data"></span>
+                    </div>
+                    <p class="comentario-texto"></p>
+                    <button class="btn-responder" onclick="abrirResposta(1)">Responder</button>
+                </div>
+
+                <div class="div-resposta-input" id="div_resposta_1" style="display: none;">
+                    <textarea rows="2" id="textarea_resposta_1" placeholder="Escreva uma resposta"></textarea>
+                    <button class="btn-enviar" onclick="enviarResposta(1)">Enviar resposta</button>
+                </div>
+
+                <div class="comentario-respostas">
+                    <div class="comentario-card respostas">
+                        <div class="comentario-header">
+                            <strong class="comentario-autor"></strong>
+                            <span class="comentario-data"></span>
+                        </div>
+                        <p class="comentario-texto"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--sessão de comentários fim-->
+
+    <!-- pop-up alerta de login início -->
+    <div id="div_modal_cadastro" class="modal-container" style="display: none;">
+        <div class="modal-conteudo">
+            <h2>Ops! Você não está logado</h2>
+            <p>Para interagir com a comunidade e deixar seu afeto na receita, você precisa ter uma conta.</p>
+
+            <div class="modal-botoes">
+                <button class="btn-enviar" onclick="window.location='./cadastro.html'">Criar uma conta</button>
+                <button class="btn-link-login" onclick="window.location='./login.html'">Já tenho uma conta</button>
+            </div>
+
+            <button class="btn-fechar-modal" onclick="fecharModal()">Voltar para receita</button>
+        </div>
+    </div>
+    <!-- pop-up alerta de login fim -->
+
+</body>
+</html>
+
+<script>
+    function postarComentario() {
+        var idUsuarioLogado = sessionStorage.idUsuario;
+        var textoComentario = document.getElementById('textarea_comentario').value;
+
+        var idReceitaAtual = 2;
+
+        if (idUsuarioLogado == undefined || idUsuarioLogado == ''){
+            document.getElementById('div_modal_cadastro').style.display = 'flex';
+            return
+        }
+
+        if(textoComentario == '') {
+            alert('Por favor, digite um comentário antes de enviar.');
+            return;
+        }
+
+        fetch("/comentarios/cadastrar", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                comentarioServer: textoComentario,
+                fkReceitaServer: idReceitaAtual,
+                fkUsuarioServer: idUsuarioLogado,
+                fkComentarioServer: null
+            })
+        }).then(function (resposta) {
+            if(resposta.ok) {
+                alert ('Comentário publicado com sucesso!');
+                window.location.reload();
+            } else {
+                alert('Erro ao publicar comentário!');
+            }
+        }).catch(function (erro) {
+            console.log('Erro na requisição: ', erro);
+        });
+    }
+
+    function abrirResposta(idComentario){
+        var caixa = document.getElementById('div_resposta_' + idComentario);
+
+       if(caixa.style.display == 'none' || caixa.style.display == '') {
+        caixa.style.display = 'block';
+       } else {
+        caixa.style.display = 'none';
+       }
+    }
+
+    function enviarResposta (idComentarioPai) {
+        var idUsuarioLogado = sessionStorage.idUsuario;
+        var campoTexto = document.getElementById("textarea_resposta_" + idComentarioPai);
+        var textoDaResposta = campoTexto.value;
+        var idReceitaAtual = 2;
+
+        if (idUsuarioLogado == "" || idUsuarioLogado == undefined) {
+            document.getElementById('div_modal_cadastro').style.display = 'flex';
+            return;
+        }
+
+        if(textoDaResposta == ''){
+            alert('Por favor, digite uma resposta antes de enviar!');
+            return;
+        }
+
+        fetch("/comentarios/cadastrar", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                comentarioServer: textoDaResposta,
+                fkReceitaServer: idReceitaAtual,
+                fkUsuarioServer: idUsuarioLogado,
+                fkComentarioServer: idComentarioPai
+            })
+        }).then(function (resposta) {
+            if(resposta.ok) {
+                alert ('Resposta enviada com sucesso!');
+                window.location.reload();
+            } else {
+                alert('Erro ao enviar respostas!');
+            }
+        }).catch(function (erro) {
+            console.log('Erro na requisição: ', erro);
+        });
+    }
+
+    function atualizarMural() {
+        var idReceitaAtual = 2;
+
+        fetch(`/comentarios/listar/${idReceitaAtual}`, {
+            cache: 'no-store'
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (comentariosDoBanco) {
+                    console.log('Dados recebidos: ', JSON.stringify(comentariosDoBanco));
+
+                    var mural = document.getElementById('div_lista_comentario');
+                    mural.innerHTML = "";
+
+                    if (comentariosDoBanco.length == 0) {
+                        mural.innerHTML = "<p class='sem-comentarios'> Seja o primeiro a ddeixar seu afeto nesta receita!</p>"
+                    }
+
+                    for (var i = 0; i < comentariosDoBanco.length; i++) {
+                        var comentarioAtual = comentariosDoBanco[i];
+
+                        mural.innerHTML += `
+                            <div class="comentario-card">
+                                <div class="comentario-header">
+                                    <strong class="comentario-autor">${comentarioAtual.nome}</strong>
+                                    <span class="comentario-data">${comentarioAtual.dtComentario}</span>
+                                </div>
+                                <p class="comentario-texto">${comentarioAtual.comentario}</p>
+                                <button class="btn-responder" onclick="abrirResposta(${comentarioAtual.idComentario})">Responder</button>
+                            </div>
+
+                            <div class="div-resposta-input" id="div_resposta_${comentarioAtual.idComentario}" style="display: none;">
+                                <textarea rows="2" id="textarea_resposta_${comentarioAtual.idComentario}" placeholder="Escreva uma resposta"></textarea>
+                                <button class="btn-enviar" onclick="enviarResposta(${comentarioAtual.idComentario})">Enviar resposta</button>
+                            </div>
+                        `;
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        }).catch(function (erro) {
+            console.error("Erro na obtenção dos dados: ", erro.message);
+        });
+    }
+
+</script>
