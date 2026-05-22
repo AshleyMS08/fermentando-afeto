@@ -342,6 +342,12 @@ canvas {
   color: #e8e7bc;
 }
 
+.header-left h1 {
+  height: 20px;
+  font-family: 'fonte-2';
+  font-size: 30px;
+}
+
 .header-left {
   position: fixed;
   top: 0;
