@@ -120,7 +120,7 @@
             </div>
         </div>
 
-        <script src="./../js/catalogo.js"></script>
+        <script src="/js/catalogo.js"></script>
 </body>
 </html>
 
@@ -128,7 +128,7 @@
     var idReceitaAtual = 4;
 
      function postarComentario() {
-        var idUsuarioLogado = sessionStorage.idUsuario;
+        var idUsuarioLogado = sessionStorage.ID_USUARIO;
         var textoComentario = document.getElementById('textarea_comentario').value;
 
         if(textoComentario == '') {

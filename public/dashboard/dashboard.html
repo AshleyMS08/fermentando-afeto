@@ -40,7 +40,7 @@
 
             <div class="btn-nav-white">
                 <a href="./cards.html">
-                    <h3>Receitas</h3>
+                    <h3>Receitas favoritas</h3>
                 </a>
             </div>
 
@@ -65,6 +65,8 @@
         <div class="dash">
             <div class="alerta"></div>
 
+            <div class="titulo-comunidade"> Indicadores da Comunidade</div>
+
             <div class="kpis-container">
                 <div class="card-kpi">
                     <h3>Experiência Predominante</h3>
@@ -82,6 +84,7 @@
                     <div class="graph">
                         <canvas id="chartObjetivos"></canvas>
                     </div>
+                    <p class="desc-grafico">Gráfico que apresenta porcentagem de objetivos do total de usuários</p>
                 </div>
 
                 <div class="box-grafico">
@@ -89,6 +92,7 @@
                     <div class="graph">
                         <canvas id="chartCategorias"></canvas>
                     </div>
+                    <p class="desc-grafico">Gráfico que apresenta a relação de receita por categoria presentes no site</p>
                 </div>
             </div>
         </div>
@@ -104,8 +108,8 @@
     window.onload = function () {
         carregarKPIExperiencia();
         carregarKPIObjetivo();
-        carregarGraficoObjetivos();
-        carregarGraficoCategorias();
+        obterDadosGraficoObjetivo();
+        obterDadosGraficoCategorias();
     };
 
     function carregarKPIExperiencia() {
@@ -122,7 +126,7 @@
         fetch("/medidas/kpi-objetivo", { cache: 'no-store'}).then(function (resposta){
             if(resposta.ok && resposta.status != 204) {
                 resposta.json().then(function (dados) {
-                    document.getElementById("kpi_objetivo").innerHTML = dados[0].nivelExperiencia;
+                    document.getElementById("kpi_objetivo").innerHTML = dados[0].objetivo;
                 });
             }
         });
@@ -142,7 +146,7 @@
             }
         })
         .catch(function (error) {
-            console.error(`Erro na obtenção de dados p/ gráfico de objetivos ${error.massage}`);
+            console.error(`Erro na obtenção de dados p/ gráfico de objetivos ${error.message}`);
         });
     }
 
@@ -150,10 +154,13 @@
         console.log('Iniciando plotagem do gráfico de Objetivos...');
 
         let labels = [];
-        datsets: [{
+
+        let dadosConstrucao = {
+            labels: labels,
+            datasets: [{
             label: 'Usuários',
             data:[],
-            backgroundColor: ['#e6005a', '#32b9cd', '#ffca56', '#4bc0c0'],
+            backgroundColor: ['#D0BDE8', '#E8E7BC', '#534366', '#9C8CB3', '#C2C193'],
             borderWidth: 1
         }]
     };
@@ -168,6 +175,7 @@
         type: 'doughnut',
         data: dadosConstrucao,
         options: {
+            maintainAspectRatio: false,
             plugins: { legend: {labels: { color: 'white' } } }
         }
     };
@@ -178,6 +186,126 @@
     );
 
     setTimeout(() => atualizarGraficoObjetivos(dadosConstrucao, chartObj), TEMPO_ATUALIZACAO_MS);
+    }
+    
+    function atualizarGraficoObjetivos(dadosConstrucao, chartObj) {
+        fetch("/medidas/grafico-experiencia", { cache : 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+                    dadosConstrucao.labels = [];
+                    dadosConstrucao.datasets[0].data = [];
 
+                    for (let i = 0; i < novoRegistro.length; i++) {
+                        var registro = novoRegistro[i];
+                        dadosConstrucao.labels.push(registro.objetivo);
+                        dadosConstrucao.datasets[0].data.push(registro.total_usuarios);
+                    }
+                    chartObj.update();
+                    setTimeout(() => atualizarGraficoObjetivos(dadosConstrucao, chartObj), TEMPO_ATUALIZACAO_MS);
+                });
+            } else {
+                setTimeout(() => atualizarGraficoObjetivos(dadosConstrucao, chartObj), TEMPO_ATUALIZACAO_MS);
+            }
+        });
+    }
+
+    /*SEGUNDO GRÁFICO*/
+
+    function obterDadosGraficoCategorias() {
+        fetch("/medidas/grafico-categorias", {cache: 'no-store'})
+        .then(function (response) {
+            if(response.ok) {
+                response.json().then(function (resposta) {
+                    plotarGraficoCategorias(resposta);
+                });
+            }
+        });
+    }
+
+    function plotarGraficoCategorias(resposta) {
+
+        console.log("Chegou no plotar categorias", resposta);
+
+        let labels = [];
+
+        let dadosConstrucao = {
+            labels: labels,
+            datasets: [{
+            label: 'Quantidade de Receitas',
+            data:[],
+            backgroundColor: '#C2C193',
+            borderWidth: 5
+        }]
+    };
+
+    for (let i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        labels.push(registro.tipo_categoria);
+        dadosConstrucao.datasets[0].data.push(registro.total_receitas);
+    }
+
+    const config = {
+        type: 'bar',
+        data: dadosConstrucao,
+        options: {
+            scales: {
+                y: { beginAtZero: true, 
+                    ticks: { color: 'white'},
+                    title: {
+                        display: true,
+                        text: 'Número de receitas',
+                        color: 'white',
+                        font: {
+                            size: 14,
+                            weight: 'normal'
+                        }
+                    } 
+                },
+                x: { ticks: { color: 'white' },
+                     title: {
+                        display: true,
+                        text: 'Categorias',
+                        color: 'white',
+                        font: {
+                            size: 14,
+                            weight: 'normal'
+                        }
+                     }
+                }
+            },
+            plugins: { legend: { display: false } }
+        }
+    };
+
+    let chartCat = new Chart(
+        document.getElementById('chartCategorias'),
+        config
+    );
+
+    setTimeout(() => atualizarGraficoCategorias(dadosConstrucao, chartCat), TEMPO_ATUALIZACAO_MS);
+    }
+    
+    function atualizarGraficoCategorias(dadosConstrucao, chartCat) {
+        fetch("/medidas/grafico-categorias", { cache : 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+                    dadosConstrucao.labels = [];
+                    dadosConstrucao.datasets[0].data = [];
+
+                    for (let i = 0; i < novoRegistro.length; i++) {
+                        var registro = novoRegistro[i];
+                        dadosConstrucao.labels.push(registro.tipo_categoria);
+                        dadosConstrucao.datasets[0].data.push(registro.total_receitas);
+                    }
+                    chartCat.update();
+                    setTimeout(() => atualizarGraficoCategorias(dadosConstrucao, chartCat), TEMPO_ATUALIZACAO_MS);
+                });
+            } else {
+                setTimeout(() => atualizarGraficoCategorias(dadosConstrucao, chartCat), TEMPO_ATUALIZACAO_MS);
+            }
+        });
+    }
 
 </script>
