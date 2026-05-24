@@ -147,9 +147,9 @@
 
 <script>
     var idReceitaAtual = 2;
+    var idUsuarioLogado = sessionStorage.getItem("ID_USUARIO");
 
      function postarComentario() {
-        var idUsuarioLogado = sessionStorage.idUsuario;
         var textoComentario = document.getElementById('textarea_comentario').value;
 
         if(textoComentario == '') {
@@ -191,16 +191,9 @@
     }
 
     function enviarResposta (idComentarioPai) {
-        var idUsuarioLogado = sessionStorage.idUsuario;
         var campoTexto = document.getElementById("textarea_resposta_" + idComentarioPai);
         var textoDaResposta = campoTexto.value;
         
-
-        if (idUsuarioLogado == "" || idUsuarioLogado == undefined) {
-            document.getElementById('div_modal_cadastro').style.display = 'flex';
-            return;
-        }
-
         if(textoDaResposta == ''){
             alert('Por favor, digite uma resposta antes de enviar!');
             return;
