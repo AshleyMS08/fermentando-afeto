@@ -20,7 +20,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), exibirAquarios(),  atualizacaoPeriodica()">
+<body>
 
     <div class="janela">
 
@@ -33,7 +33,7 @@
             </div>
 
             <div class="btn-nav">
-                <h3>Receitas favoritas</h3>
+                <h3>Calculadora de receitas</h3>
             </div>
 
             <div class="btn-nav-white">
@@ -54,67 +54,140 @@
 
         </div>
 
-        <div class="dash">
-            <div id="alerta">
-            </div>
-            <div class="area-parametros-alerta">
-                <p class="titulo-legenda">
-                    Legenda - Parâmetros para Alertas
-                </p>
-                <div class="parametros-alerta">
-                    <div class="item-regua perigo-frio">
-                        <p>Perigo</p>
-                        <p>&lt;=5°C</p>
-                    </div>
-                    <div class="item-regua alerta-frio">
-                        <p>Alerta</p>
-                        <p>&lt;=10°C</p>
-                    </div>
-                    <div class="item-regua ideal">
-                        <p>Ideal</p>
-                        <p>20°C</p>
-                    </div>
-                    <div class="item-regua alerta-quente">
-                        <p>Alerta</p>
-                        <p>&gt;=22°C</p>
-                    </div>
-                    <div class="item-regua perigo-quente">
-                        <p>Perigo</p>
-                        <p>&gt;=23°C</p>
-                    </div>
-                </div>
-            </div>
+        <div class="main-container">
 
-            <div class="cards" id="cardAquarios">
+        <div class="conteudo-esquerdo">
+            <h2 class="calculadora-titulo"> Calculadora de receitas</h2>
 
-            </div>
-
+                <p>Boas receitas devem ser compartilhadas, utilize nossa 
+                    calculadora para saber a proporção exata baseado na 
+                    quantidade de pessoas que vão comer.</p>
         </div>
+                
+        <div class="conteudo-direito">
+            <div class="calculadora-container">
 
+                <div class="formulario-grupo">
+                    <label class="formulario-label" for="sel_receita">Selecione a Receita:</label>
+                    <select id="sel_receita" class="formulario-input">
+                        <option value="0">Escolha uma delícia</option>
+                        <option value="1">Pizza</option>
+                        <option value="2">Cinnamon Roll</option>
+                        <option value="3">Focaccia</option>
+                        <option value="4">Pão de Lã</option>
+                    </select>
+                </div>
+
+                <div class="formulario-grupo">
+                    <label class="formulario-label" for="ipt_pessoas">Quantidade de pessoas</label>
+                    <input type="number" id="ipt_pessoas" class="formulario-input" min="1" placeholder="Ex: 4">
+                </div>
+                <button onclick="calcularProporcao()" class="btn-calcular">Calcular ingredientes</button>
+            
+         <div id="div_resultado"></div>
+            </div>
+            
+        </div>
+            
+        </div>
     </div>
 
 </body>
 
 <script>
+    var listaReceitas = [
+        {
+            id: 1,
+            nome: "Pizza",
+            ingredientes: [
+                {nome: "Farinha de trigo", qtde: 185, unidade: "gramas"},
+                {nome: "Fermento biológico seco", qtde: 5, unidade: "gramas"},
+                {nome: "Açúcar", qtde: 0.5, unidade: "colher(s) de chá"},
+                {nome: "Sal", qtde: 0.5, unidade: "colher(s) de chá"},
+                {nome: "Água morna", qtde: 0.0625, unidade: "xícara(s) de chá"},
+                {nome: "Azeite de oliva", qtde: 0.0625, unidade: "xícara(s) de chá"}
+            ]
+        },
+        {
+            id: 2,
+            nome: "Cinnamon Roll",
+            ingredientes: [
+                {nome: "Farinha de trigo", qtde: 62.5, unidade: "gramas"},
+                {nome: "Leite gordo", qtde: 27.5, unidade: "mililitros"},
+                {nome: "Manteiga sem sal(derretida)", qtde: 9.375, unidade: "gramas"},
+                {nome: "Açúcar", qtde: 7.5, unidade: "gramas"},
+                {nome: "Ovo grandes", qtde: 0.25, unidade: "unidade"},
+                {nome: "Fermento biológico seco", qtde: 0.4375, unidade: "gramas"},
+                {nome: "Sal", qtde: 1, unidade: "gramas"},
+                {nome: "Açúcar mascavo", qtde: 18.75, unidade: "gramas"},
+                {nome: "Manteiga ponto de pomada", qtde: 10, unidade: "gramas"},
+                {nome: "Canela em pó", qtde: 0.3125, unidade: "colher(es) de sopa"}
+            ]
+        },
+        {
+            id: 3,
+            nome: "Focaccia",
+            ingredientes: [
+                {nome: "Farinha de trigo T65/ Forte", qtde: 125, unidade: "gramas"},
+                {nome: "Água fria", qtde: 100, unidade: "mililitros"},
+                {nome: "Fermento biológico seco", qtde: 0.75, unidade: "gramas"},
+                {nome: "Sal", qtde: 2.5, unidade: "gramas"},
+                {nome: "Azeite de oliva extravirgem", qtde: 10, unidade: "mililitros"},
+                {nome: "Alecrim, sal grosso ou tomate-cereja", qtde: 1, unidade: "a gosto"}
+            ]
+        },
+        {
+            id: 4,
+            nome: "Pão de lã",
+            ingredientes: [
+                {nome: "Farinha de trigo", qtde: 75, unidade: "gramas"},
+                {nome: "Leite morno", qtde: 20, unidade: "mililitros"},
+                {nome: "Natas(creme de leite)", qtde: 25, unidade: "mililitros"},
+                {nome: "Ovo", qtde: 0.25, unidade: "unidade"},
+                {nome: "Açúcar", qtde: 7.5, unidade: "gramas"},
+                {nome: "Fermento biológico seco", qtde: 1.5, unidade: "gramas"},
+                {nome: "Sal", qtde: 1.25, unidade: "gramas"}
+            ]
+        }
+    ];
 
-    function exibirAquarios() {
-        JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
-            document.getElementById("cardAquarios").innerHTML += `
-                    <div class="card-aquario">
-                        <div class="title-aquario">
-                            <h1>${item.descricao}</h1>
-                        </div>
-                        <div class="desc-aquario">
-                        <div class="temperatura">
-                            <p id="temp_aquario_${item.id}">-°C</p>
-                        </div>
-                        <div class="cor-alerta" id="card_${item.id}"></div>
-                    </div>
-                    </div>
-                    `
-        });
+    function calcularProporcao() {
+        var qtdePessoas = Number(ipt_pessoas.value);
+        var idSelecionado = Number(sel_receita.value);
+
+        if(qtdePessoas <= 0 || idSelecionado == 0) {
+            alert('Por favor, selecione uma receita e insira o número de pessoas para a realização do calculo');
+        } else {
+            div_resultado.innerHTML = '';
+            div_resultado.className = 'card_resultado';
+
+            for (let i = 0; i < listaReceitas.length; i++) {
+                var receitaAtual = listaReceitas[i];
+                
+                if(receitaAtual.id == idSelecionado){
+                    div_resultado.innerHTML = `<h3 class="titulo-resultado">Ingredientes para ${qtdePessoas} pessoa(s):</h3>`;
+
+                    var conteudoLista = `<ul class="lista-ingredientes">`;
+                        for (let j = 0; j <  receitaAtual.ingredientes.length; j++) {
+                            var ing = receitaAtual.ingredientes[j];
+                          
+                            var qtdeFinal = ing.qtde * qtdePessoas;
+
+                            if(ing.unidade == "a gosto") {
+                                conteudoLista += `<li class="item-ingrediente">${ing.nome}: <span class="destaque"> A gosto</span></li>`
+                            } else {
+                                var qtdeFormatada = qtdeFinal.toFixed(2).replace('.00', '');
+                                conteudoLista += `<li class="item-ingrediente">${ing.nome}: <span class="destaque-qtd">${qtdeFormatada} ${ing.unidade}</span></li>`
+                            }
+                        }
+
+                    conteudoLista += '</ul>';
+
+                    div_resultado.innerHTML += conteudoLista;
+                }
+            }
+        }
     }
-
 </script>
 
 </html>
