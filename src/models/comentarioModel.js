@@ -1,13 +1,13 @@
 var database = require("../database/config");
 
-function cadastrar(comentario, fkReceita, idUsuario, fkComentario) {
+function cadastrar(comentario, fkReceita, fkUsuario, fkComentario) {
     console.log("ACESSEI O COMENTÁRIO MODEL para executar o INSERT")
 
     var fkPai = (fkComentario == undefined || fkComentario == null) ? "NULL" : fkComentario;
 
     var instrucaoSql = `
-        INSERT INTO comentario (comentario, fkReceita, idUsuario, fkComentario)
-        VALUES ('${comentario}', ${fkReceita}, ${idUsuario}, ${fkPai});
+        INSERT INTO comentario (comentario, fkReceita, fkUsuario, fkComentario)
+        VALUES ('${comentario}', ${fkReceita}, ${fkUsuario}, ${fkPai});
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -26,7 +26,7 @@ function listar(idReceita) {
         DATE_FORMAT(c.dtComentario, '%d/%m/%Y') AS dtComentario,
         u.nome
     FROM comentario AS c
-    JOIN usuario AS u ON c.idUsuario = u.idUsuario
+    JOIN usuario AS u ON c.fkUsuario = u.idUsuario
     WHERE c.fkReceita = ${idReceita}
     ORDER BY c.idComentario DESC;
     `;
