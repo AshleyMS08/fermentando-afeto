@@ -459,8 +459,8 @@ canvas {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  border-right: 3px solid #534366;
-  background-color: #271f30;
+  border-right: 3px solid #d1c1e0;
+  background-color: rgba(39, 31, 48, 1);
 }
 
 .dash-right {
@@ -496,14 +496,22 @@ canvas {
 }
 
 .btn-nav {
-  width: 40%;
-  color: #e8e7bc;
-  background-color: #534366;
+  width: 75%;
+  color: #d0bde8;
+  background-color: none;
   border-radius: 5px;
   text-align: center;
   padding: 2% 5%;
+  transition: transform 0.3s ease;
 }
 
+.btn-nav:hover {
+  color: #e8e7bc;
+  transform: scale(1.08);
+  cursor: pointer;
+}
+
+/*
 .btn-nav-#e8e7bc {
   width: 40%;
   background-color: #e8e7bc;
@@ -524,6 +532,8 @@ canvas {
   margin: 0;
   padding: 0;
 }
+*/
+
 
 .btn-logout {
   margin: 0;
