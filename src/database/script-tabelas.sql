@@ -30,18 +30,7 @@ CREATE TABLE receita(
 	CONSTRAINT fkCategoriaReceita FOREIGN KEY (fkCategoria)
 	REFERENCES categoria(idCategoria)
   );
-  
-  CREATE TABLE receitas_favoritas (
-	fkUsuario INT,
-		CONSTRAINT fkUsuarioReceita FOREIGN KEY (fkUsuario)
-		REFERENCES usuario(idUsuario),
-	fkReceita INT,
-		CONSTRAINT fkReceitaFavorita FOREIGN KEY (fkReceita)
-		REFERENCES receita(idReceita),
-	PRIMARY KEY(fkUsuario, fkReceita),
-    dtSalvamento TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
-  );
-   
+
   CREATE TABLE tipo (
   idTipo INT PRIMARY KEY AUTO_INCREMENT,
   estado VARCHAR(20)
